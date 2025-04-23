@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTheme } from '@/contexts/ThemeContext';
+import ThemeToggle from './ThemeToggle';
 
 export default function Headerd() {
   const [scrolled, setScrolled] = useState(false);
+  const { theme, isDarkMode } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,8 +17,21 @@ export default function Headerd() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const headerStyle = {
+    backgroundColor: scrolled ? theme.colors.background : 'transparent',
+    borderBottom: scrolled ? `1px solid ${theme.colors.border}` : 'none'
+  };
+
+  const navLinkStyle = {
+    color: scrolled ? theme.colors.text : isDarkMode ? '#e2e8f0' : '#6c6c6c',
+    hoverColor: theme.colors.primary
+  };
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-4'}`}
+      style={headerStyle}
+    >
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
@@ -28,17 +44,73 @@ export default function Headerd() {
         </div>
         
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
-          <Link href="#features" className="text-[#6c6c6c] hover:text-[#01427a] transition-colors duration-300 text-sm lg:text-base">Features</Link>
-          <Link href="#how-it-works" className="text-[#6c6c6c] hover:text-[#01427a] transition-colors duration-300 text-sm lg:text-base">How It Works</Link>
-          <Link href="#for-teachers" className="text-[#6c6c6c] hover:text-[#01427a] transition-colors duration-300 text-sm lg:text-base">For Teachers</Link>
-          <Link href="#for-students" className="text-[#6c6c6c] hover:text-[#01427a] transition-colors duration-300 text-sm lg:text-base">For Students</Link>
+          <Link 
+            href="#features" 
+            className="transition-colors duration-300 text-sm lg:text-base"
+            style={{ 
+              color: navLinkStyle.color,
+              '&:hover': { color: navLinkStyle.hoverColor }
+            }}
+          >
+            Features
+          </Link>
+          <Link 
+            href="#how-it-works" 
+            className="transition-colors duration-300 text-sm lg:text-base"
+            style={{ 
+              color: navLinkStyle.color,
+              '&:hover': { color: navLinkStyle.hoverColor }
+            }}
+          >
+            How It Works
+          </Link>
+          <Link 
+            href="#for-teachers" 
+            className="transition-colors duration-300 text-sm lg:text-base"
+            style={{ 
+              color: navLinkStyle.color,
+              '&:hover': { color: navLinkStyle.hoverColor }
+            }}
+          >
+            For Teachers
+          </Link>
+          <Link 
+            href="#for-students" 
+            className="transition-colors duration-300 text-sm lg:text-base"
+            style={{ 
+              color: navLinkStyle.color,
+              '&:hover': { color: navLinkStyle.hoverColor }
+            }}
+          >
+            For Students
+          </Link>
         </nav>
         
         <div className="flex items-center space-x-2 sm:space-x-4">
-          <button className="border border-[#01427a] text-[#01427a] px-3 py-1 sm:px-4 sm:py-2 rounded-lg hover:bg-[#01427a] hover:text-white transition-colors duration-300 whitespace-nowrap text-sm sm:text-base">
+          <ThemeToggle />
+          <button 
+            className="border px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap text-sm sm:text-base transition-colors duration-300"
+            style={{
+              borderColor: theme.colors.primary,
+              color: theme.colors.primary,
+              '&:hover': {
+                backgroundColor: theme.colors.primary,
+                color: theme.colors.buttonText
+              }
+            }}
+          >
             Sign In
           </button>
-          <button className="bg-[#01b3ef] text-white px-3 py-1 sm:px-4 sm:py-2 rounded-lg hover:bg-[#6dcffb] transition-colors duration-300 whitespace-nowrap text-sm sm:text-base">
+          <button 
+            className="px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap text-sm sm:text-base transition-colors duration-300"
+            style={{
+              backgroundColor: theme.colors.primary,
+              color: theme.colors.buttonText,
+              '&:hover': {
+                backgroundColor: isDarkMode ? theme.colors.secondary : '#6dcffb'
+              }
+            }}
+          >
             Get Started
           </button>
         </div>
