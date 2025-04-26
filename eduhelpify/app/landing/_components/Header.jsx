@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
+import { useRouter } from 'next/navigation';
 
 export default function Headerd() {
   const [scrolled, setScrolled] = useState(false);
   const { theme, isDarkMode } = useTheme();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,7 +91,7 @@ export default function Headerd() {
         <div className="flex items-center space-x-2 sm:space-x-4">
           <ThemeToggle />
           <button 
-            className="border px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap text-sm sm:text-base transition-colors duration-300"
+            className="border px-3 py-1 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap text-sm sm:text-base transition-colors duration-300 cursor-pointer"
             style={{
               borderColor: theme.colors.primary,
               color: theme.colors.primary,
@@ -98,6 +100,7 @@ export default function Headerd() {
                 color: theme.colors.buttonText
               }
             }}
+            onClick={() => router.push('/login')}
           >
             Sign In
           </button>
@@ -110,6 +113,7 @@ export default function Headerd() {
                 backgroundColor: isDarkMode ? theme.colors.secondary : '#6dcffb'
               }
             }}
+            onClick={() => router.push('/signup')}
           >
             Get Started
           </button>
