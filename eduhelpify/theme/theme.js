@@ -1,19 +1,20 @@
+// themes.js
 export const lightTheme = {
   colors: {
     primary: '#01427a',
     secondary: '#01b3ef',
     background: '#ffffff',
     text: '#333333',
-    inputText: '#0c0c0d', // Dark color for input text
-    placeholder: '#6c6c6c', // Light grey for placeholders
+    inputText: '#0c0c0d',
+    placeholder: '#6c6c6c',
     cardBg: '#ffffff',
     footerBg: '#1a1a1a',
     footerText: '#ffffff',
     buttonText: '#ffffff',
     border: '#e2e8f0',
-    inputBorder: '#afafaf', // Specific border color for inputs
-    focusBorder: '#01b3ef', // Border color when focused
-    errorBorder: '#e14177', // Border color for errors
+    inputBorder: '#afafaf',
+    focusBorder: '#01b3ef',
+    errorBorder: '#e14177',
     gradientFrom: '#01427a',
     gradientTo: '#01b3ef',
     iconBg: '#01427a',
@@ -22,9 +23,13 @@ export const lightTheme = {
     icon: '#6c6c6c',
     socialBorder: '#d1d5db',
     socialHover: '#f9fafb',
+    // Added for dashboard
+    sidebarBg: '#ffffff',
+    sidebarHover: '#f3f4f6',
+    chatBg: '#ffffff',
   },
   fonts: {
-    input: 'inherit', // Use your desired font family
+    input: 'inherit',
   }
 };
 
@@ -34,16 +39,16 @@ export const darkTheme = {
     secondary: '#01427a',
     background: '#121212',
     text: '#f5f5f5',
-    inputText: '#f5f5f5', // Light color for input text
-    placeholder: '#6b7280', // Darker grey for placeholders
+    inputText: '#f5f5f5',
+    placeholder: '#6b7280',
     cardBg: '#1e1e1e',
     footerBg: '#000000',
     footerText: '#e2e8f0',
     buttonText: '#121212',
     border: '#2d3748',
-    inputBorder: '#4b5563', // Darker border for inputs
-    focusBorder: '#01427a', // Border color when focused
-    errorBorder: '#ff4d7e', // Border color for errors
+    inputBorder: '#4b5563',
+    focusBorder: '#01427a',
+    errorBorder: '#ff4d7e',
     gradientFrom: '#01b3ef',
     gradientTo: '#01427a',
     iconBg: '#01b3ef',
@@ -52,8 +57,12 @@ export const darkTheme = {
     icon: '#a0a0a0',
     socialBorder: '#374151',
     socialHover: '#1f2937',
+    // Added for dashboard
+    sidebarBg: '#1f2937',
+    sidebarHover: '#374151',
+    chatBg: '#1a1a1a',
   },
   fonts: {
-    input: 'inherit', // Use your desired font family
+    input: 'inherit',
   }
 };
