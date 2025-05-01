@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import Header from './_components/Header';
 import Sidebar from './_components/Sidebar';
 import { useState } from 'react';

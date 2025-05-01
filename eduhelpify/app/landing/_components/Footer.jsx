@@ -11,7 +11,7 @@ import {
   faInstagram,
   faLinkedinIn
 } from '@fortawesome/free-brands-svg-icons';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function Footer() {
   const { theme } = useTheme();

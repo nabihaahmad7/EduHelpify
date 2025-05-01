@@ -1,7 +1,7 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faCog, faRocket } from '@fortawesome/free-solid-svg-icons'
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function HowItWorks() {
   const { theme, isDarkMode } = useTheme();

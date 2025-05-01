@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import { useRouter } from 'next/navigation';
 
@@ -100,7 +100,7 @@ export default function Headerd() {
                 color: theme.colors.buttonText
               }
             }}
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/auth')}
           >
             Sign In
           </button>
@@ -113,7 +113,7 @@ export default function Headerd() {
                 backgroundColor: isDarkMode ? theme.colors.secondary : '#6dcffb'
               }
             }}
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push('/auth')}  
           >
             Get Started
           </button>

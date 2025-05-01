@@ -17,7 +17,7 @@ import {
   faCheckCircle,
   faNoteSticky
 } from '@fortawesome/free-solid-svg-icons';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function UserComparison() {
   const [activeTab, setActiveTab] = useState('teacher');

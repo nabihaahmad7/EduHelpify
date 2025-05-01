@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { lightTheme, darkTheme } from '@/theme/theme';
+import { lightTheme, darkTheme } from '../theme/theme';
 
 const ThemeContext = createContext();
 

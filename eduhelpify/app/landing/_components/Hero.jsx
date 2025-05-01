@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 export default function Hero() {
   const { theme, isDarkMode } = useTheme();

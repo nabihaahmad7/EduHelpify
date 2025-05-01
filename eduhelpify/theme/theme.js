@@ -27,6 +27,14 @@ export const lightTheme = {
     sidebarBg: '#ffffff',
     sidebarHover: '#f3f4f6',
     chatBg: '#ffffff',
+    //auth
+    authBg: '#ffffff',
+    authText: '#333333',
+    authInput: '#f5f5f5',
+    authButton: '#01427a',
+    authButtonText: '#ffffff',
+    authBorder: '#d1d5db',
+    authHover: '#f9fafb',
   },
   fonts: {
     input: 'inherit',
@@ -61,6 +69,14 @@ export const darkTheme = {
     sidebarBg: '#1f2937',
     sidebarHover: '#374151',
     chatBg: '#1a1a1a',
+    //auth
+    authBg: '#121212',
+    authText: '#f5f5f5',
+    authInput: '#2d3748',
+    authButton: '#01b3ef',
+    authButtonText: '#121212',
+    authBorder: '#4b5563',
+    authHover: '#374151',
   },
   fonts: {
     input: 'inherit',

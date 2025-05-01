@@ -1,7 +1,7 @@
 
 
 import Hero from './_components/Hero';
-import Features from './_components/Feautures';
+import Features from './_components/Features';
 import HowItWorks from './_components/HowItWorks';
 import UserComparison from './_components/UserComparison';
 import Header from "./_components/Header";

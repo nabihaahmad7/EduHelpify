@@ -1,7 +1,7 @@
 // app/myfiles/page.js
 "use client";
 
-import { useTheme } from "@/contexts/ThemeContext";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 export default function MyFiles() {
   const { theme, isDarkMode } = useTheme();
