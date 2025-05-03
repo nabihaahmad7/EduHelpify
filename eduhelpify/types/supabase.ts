@@ -65,18 +65,21 @@ export interface Database {
         Row: {
           id: string
           name: string
+          extensions: string[]
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
           name: string
+          extensions: string[]
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
           name?: string
+          extensions?: string[]
           created_at?: string
           updated_at?: string
         }
