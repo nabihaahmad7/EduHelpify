@@ -8,10 +8,10 @@ export default function MainContent() {
   const { theme, isDarkMode } = useTheme();
 
   const [prompt, setPrompt] = useState("");
-  const [files, setFiles] = useState<any[]>([]);
-  const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [files, setFiles] = useState([]);         
+  const [file, setFile] = useState(null);        
+  const [error, setError] = useState(null);      
+  const [messages, setMessages] = useState([]); 
   const [loading, setLoading] = useState(false);
 
   const chatAreaRef = useRef(null);
@@ -148,35 +148,35 @@ export default function MainContent() {
                 }}
               >
                 {/* File upload section */}
-                <div className="grid gap-2">
-                  <label>File</label>
-                  <div>
-                    {file ? (
-                      <div className="flex items-center gap-2">
-                        <FontAwesomeIcon icon={faPaperPlane} className="h-5 w-5" />
-                        <span>{file.name}</span>
-                        <button
-                          className="px-2 py-1 bg-red-500 text-white rounded"
-                          onClick={() => setFile(null)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ) : (
-                      <label className="flex items-center justify-center gap-2 rounded-md border-2 border-dashed border-muted p-4 text-muted-foreground cursor-pointer">
-                        <FontAwesomeIcon icon={faPlus} className="h-5 w-5" />
-                        <span>Drop a file or click to upload</span>
-                        <input
-                          type="file"
-                          className="hidden"
-                          onChange={handleFileChange}
-                          accept=".txt,.pdf"
-                        />
-                      </label>
-                    )}
-                  </div>
-                  {error && <p className="text-red-500 text-sm">{error}</p>}
-                </div>
+                <div className="grid gap-1 mr-4">
+  <div>
+    {file ? (
+      <div className="flex items-center gap-2">
+        <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4 mr-2" />
+        <span className="text-sm">{file.name}</span>
+        <button
+          className="px-2 py-1 bg-red-500 text-white text-xs rounded"
+          onClick={() => setFile(null)}
+        >
+          Remove
+        </button>
+      </div>
+    ) : (
+      <label className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer transition-colors duration-200">
+        <FontAwesomeIcon icon={faPlus} className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
+        <input
+          type="file"
+          className="hidden"
+          onChange={handleFileChange}
+          accept=".txt,.pdf"
+        />
+      </label>
+    )}
+  </div>
+  {error && <p className="text-red-500 text-sm">{error}</p>}
+</div>
+
+
 
                 {/* Textarea */}
                 <textarea
