@@ -8,44 +8,48 @@ export default function MainContent() {
   const { theme, isDarkMode } = useTheme();
 
   const [prompt, setPrompt] = useState("");
-  const [files, setFiles] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [files, setFiles] = useState<any[]>([]);
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   const chatAreaRef = useRef(null);
 
+  // Handle file selection and validation (only .txt and .pdf files)
   const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    const validFiles = selectedFiles.filter(file => file.size <= 10 * 1024 * 1024); // 10MB limit
-
-    if (validFiles.length !== selectedFiles.length) {
-      alert("Some files exceed 10MB and were not added.");
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      if (selectedFile.type === 'text/plain' || selectedFile.type === 'application/pdf') {
+        setFile(selectedFile);
+        setError(null);
+      } else {
+        setError('Please upload a .txt or .pdf file');
+      }
     }
-
-    setFiles(prev => [...prev, ...validFiles]);
   };
 
   const handleSubmit = async () => {
-    if (!prompt && files.length === 0) {
-      alert("Please enter a prompt or upload files!");
+    if (!prompt && !file) {
+      alert("Please enter a prompt or upload a file!");
       return;
     }
 
     setMessages(prev => [
       ...prev,
-      { type: "user", content: prompt || files.map(f => f.name).join(", ") }
+      { type: "user", content: prompt || file?.name }
     ]);
     setLoading(true);
 
     try {
-      // 1. Simulate task creation
+      // Simulate task creation
       const fakeTaskId = Date.now(); // Replace with real task ID from backend if needed
 
-      // 2. Upload each file with task_id
-      for (const file of files) {
+      // Upload file with task_id
+      if (file) {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("task_id", fakeTaskId);
+        formData.append("task_id", fakeTaskId.toString());
 
         await fetch("/api/upload", {
           method: "POST",
@@ -53,18 +57,18 @@ export default function MainContent() {
         });
       }
 
-      // 3. Dummy AI response
+      // Dummy AI response
       setTimeout(() => {
         setMessages(prev => [
           ...prev,
-          { type: "bot", content: "Files and prompt submitted successfully." }
+          { type: "bot", content: "File and prompt submitted successfully." }
         ]);
         setLoading(false);
       }, 1000);
 
       // Reset input
       setPrompt("");
-      setFiles([]);
+      setFile(null);
     } catch (error) {
       console.error("Upload failed:", error);
       alert("Something went wrong!");
@@ -143,11 +147,36 @@ export default function MainContent() {
                   backgroundColor: isDarkMode ? theme.colors.background : 'rgb(243, 244, 246)'
                 }}
               >
-                {/* Upload File Button */}
-                <label className="p-2 mr-2 rounded-full hover:bg-opacity-20 hover:bg-gray-500 cursor-pointer" style={{ color: theme.colors.icon }}>
-                  <FontAwesomeIcon icon={faPlus} />
-                  <input type="file" className="hidden" onChange={handleFileChange} multiple />
-                </label>
+                {/* File upload section */}
+                <div className="grid gap-2">
+                  <label>File</label>
+                  <div>
+                    {file ? (
+                      <div className="flex items-center gap-2">
+                        <FontAwesomeIcon icon={faPaperPlane} className="h-5 w-5" />
+                        <span>{file.name}</span>
+                        <button
+                          className="px-2 py-1 bg-red-500 text-white rounded"
+                          onClick={() => setFile(null)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="flex items-center justify-center gap-2 rounded-md border-2 border-dashed border-muted p-4 text-muted-foreground cursor-pointer">
+                        <FontAwesomeIcon icon={faPlus} className="h-5 w-5" />
+                        <span>Drop a file or click to upload</span>
+                        <input
+                          type="file"
+                          className="hidden"
+                          onChange={handleFileChange}
+                          accept=".txt,.pdf"
+                        />
+                      </label>
+                    )}
+                  </div>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                </div>
 
                 {/* Textarea */}
                 <textarea
@@ -162,13 +191,6 @@ export default function MainContent() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 ></textarea>
-
-                {/* File List */}
-                {files.length > 0 && (
-                  <div className="text-xs text-gray-500 ml-2 max-w-[200px] truncate">
-                    Attached: {files.map(f => f.name).join(', ')}
-                  </div>
-                )}
 
                 {/* Send Button */}
                 <div className="flex items-center ml-2">
