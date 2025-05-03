@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { useAuth } from '../../../contexts/AuthContext';
-import ThemeToggle from '../../landing/_components/ThemeToggle';
+import ThemeToggle from '../../landing/_components/themetoggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSignOutAlt, faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,7 +41,7 @@ export default function Header({ toggleSidebar }) { // Accept toggleSidebar from
       }
       
       // When successful, redirect to login page
-      window.location.href = '/login';
+      window.location.href = '/';
     } catch (error) {
       console.error('Error signing out:', error.message);
       // You could add a toast notification here to show the error
@@ -76,6 +76,7 @@ export default function Header({ toggleSidebar }) { // Accept toggleSidebar from
               color: theme.colors.buttonText,
               borderRadius: '4px',
               padding: '2px',
+              cursor:"pointer"
             }}
           >
             <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
