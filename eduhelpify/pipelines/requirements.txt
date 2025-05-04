@@ -1,0 +1,13 @@
+flask==2.3.3
+supabase==2.0.3
+google-generativeai==0.3.1
+sendgrid==6.10.0
+python-dotenv==1.0.0
+
+
+
+google-ai-generativelanguage==0.4.0
+google-api-core==2.24.2
+google-auth==2.39.0
+
+googleapis-common-protos==1.70.0

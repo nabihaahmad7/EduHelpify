@@ -143,6 +143,7 @@ export interface Database {
           task_config_id: string | null
           input_content_type_id: string | null
           output_content_type_id: string | null
+          user_prompt: string | null
           created_at: string
           updated_at: string
         }
@@ -152,6 +153,7 @@ export interface Database {
           task_config_id?: string | null
           input_content_type_id?: string | null
           output_content_type_id?: string | null
+          user_prompt?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -161,6 +163,7 @@ export interface Database {
           task_config_id?: string | null
           input_content_type_id?: string | null
           output_content_type_id?: string | null
+          user_prompt?: string | null
           created_at?: string
           updated_at?: string
         }
