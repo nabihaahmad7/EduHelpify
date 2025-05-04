@@ -94,10 +94,10 @@ VALUES (
 
 -- Generic prompt for image input with markdown output
 INSERT INTO SystemPrompts (prompt, input_content_type_id, output_content_type_id)
-VALUES (
-  'You are a good educational helper. Please analyze the attached image. And follow these instructions:
+  VALUES (
+    'You are a good educational helper. Please analyze the attached image. And follow these instructions:
 
-"structure": Return content in Markdown format
+  "structure": Return content in Markdown format
 
 "markdown_ready": true,  
 "difficulty_level": "{difficulty_level}",  

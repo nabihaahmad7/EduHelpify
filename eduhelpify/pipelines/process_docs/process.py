@@ -1,102 +1,194 @@
 import os
 import json
-from utils.helper import (
-    get_pending_task, 
-    update_task_status, 
-    get_task_config, 
-    get_input_file, 
-    get_system_prompt, 
-    read_file_content,
-    get_content_type_info,
-    create_ai_chain,
-    save_output_file
-)
+from flask import Flask, request, jsonify
+from utils.logger import Logger
+from utils.database_service import DatabaseService
+from utils.ai_services import AiServices
+from utils.email_service import EmailService
+import dotenv
 
-def process_task():
-    # Get a pending task
-    task = get_pending_task()
-    if not task:
-        print("No pending tasks found.")
-        return
-    
-    # Update task status to Processing
-    update_task_status(task["id"], "Processing")
-    print(f"Processing task: {task['id']}")
-    
-    # Get task configuration
-    task_config = get_task_config(task["task_config_id"])
-    if not task_config:
-        print(f"Task config not found for task: {task['id']}")
-        update_task_status(task["id"], "Failed")
-        return
-    
-    # Get input file
-    input_file = get_input_file(task["id"])
-    if not input_file:
-        print(f"Input file not found for task: {task['id']}")
-        update_task_status(task["id"], "Failed")
-        return
-    
-    # Get the file content
-    file_content = read_file_content(input_file["stored_location"])
-    
-    # Get output content type info
-    output_type = get_content_type_info(task["output_content_type_id"])
-    if not output_type:
-        print(f"Output content type not found for task: {task['id']}")
-        update_task_status(task["id"], "Failed")
-        return
-    
-    # Get system prompt
-    system_prompt = get_system_prompt(task["input_content_type_id"], task["output_content_type_id"])
-    if not system_prompt:
-        print(f"System prompt not found for task: {task['id']}")
-        update_task_status(task["id"], "Failed")
-        return
-    
-    # Add focus area from task config if available
-    focus_area = task_config.get("focus_area", "")
-    prompt_text = system_prompt["prompt"]
-    if focus_area:
-        prompt_text = f"{prompt_text}\nFocus area: {focus_area}"
-    
-    # Create chain and run it
-    chain = create_ai_chain(prompt_text)
-    
+dotenv.load_dotenv(override=True)
+
+app = Flask(__name__)
+
+# Initialize services
+logger = Logger(log_file="eduhelpify.log")
+db_service = DatabaseService(logger)
+ai_service = AiServices(logger=logger)
+email_service = EmailService(logger, db_service)
+
+@app.route('/')
+def home():
+    return jsonify({"status": "running", "service": "EduHelpify Document Processing API"})
+
+@app.route('/process/<task_id>', methods=['POST'])
+def process_task_by_id(task_id):
+    """Process a specific task by ID"""
     try:
-        # Process with AI
-        result = chain.invoke({"input": file_content})
+        # Update task status to Processing
+        db_service.update_task_status(task_id, "INPROGRESS")
+        logger.info(f"Processing task: {task_id}")
         
-        # Determine file extension based on output type
-        file_extension = "txt"  # Default
-        if output_type["name"]:
-            if output_type["name"].lower() == "json":
-                file_extension = "json"
-            elif output_type["name"].lower() == "html":
-                file_extension = "html"
-            # Add more output types as needed
+        # Get task details
+        task_response = db_service.supabase.table("task").select("*").eq("id", task_id).execute()
+        if not task_response.data or len(task_response.data) == 0:
+            logger.error(f"Task not found: {task_id}")
+            return jsonify({"status": "error", "message": "Task not found"}), 404
         
-        # Save output to a new file in FileStore
-        output_data = {
-            "task_id": task["id"],
-            "file_name": f"output_{task['id']}.{file_extension}",
-            "file_type_id": task["output_content_type_id"],
-            "need_ocr": False,
-            "stored_location": f"./outputs/output_{task['id']}.{file_extension}",
-            "file_category": "output",
-            "data_value": json.dumps({"content": str(result.content)})
-        }
+        task = task_response.data[0]
         
-        # Save output file and record in database
-        save_output_file(output_data, str(result.content))
+        # 1. Get the task_config_id from the task
+        task_config_id = task.get("task_config_id")
+        if not task_config_id:
+            logger.error(f"Task config ID not found for task: {task_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "Task config ID not found"}), 400
         
-        # Update task status to Completed
-        update_task_status(task["id"], "Completed")
-        print(f"Task {task['id']} completed successfully.")
+        # 2. Get the task_config
+        task_config = db_service.get_task_config(task_id)
+        if not task_config:
+            logger.error(f"Task config not found for task: {task_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "Task config not found"}), 400
+        
+        # 3. Get the system_prompt based on input and output content types
+        system_prompt = db_service.get_system_prompt(task["output_content_type_id"])
+        if not system_prompt:
+            logger.error(f"System prompt not found for task: {task_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "System prompt not found"}), 400
+        
+        # Add focus area from task config if available
+        focus_area = task_config.get("focus_area", "")
+        content_length = task_config.get("content_length", "")
+        difficulty_level = task_config.get("difficulty_level", "")
+
+        prompt_text = system_prompt["prompt"]
+        # Replace placeholders in the prompt
+        prompt_text = prompt_text.replace("{difficulty_level}", difficulty_level)
+        prompt_text = prompt_text.replace("{content_length}", content_length)
+
+        if focus_area:
+            prompt_text = f"{prompt_text}\nFocus on: {focus_area}"
+        
+        # 4. Get the task input files
+        input_files = db_service.get_files_by_task_and_type(task_id, "input")
+        if not input_files:
+            logger.error(f"No input files found for task: {task_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "No input files found"}), 400
+        
+        # Extract file paths
+        file_paths = [file["stored_location"] for file in input_files if os.path.exists(file["stored_location"])]
+        if not file_paths:
+            logger.error(f"No valid input file paths found for task: {task_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "No valid input files found"}), 400
+        
+        # User prompt - can be customized based on your needs
+        user_prompt = task.get("user_prompt", "")
+        
+        # Create output directory
+        output_dir = "./test/output"
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = f"{output_dir}/output_{task_id}.txt"
+        
+        try:
+            # Process files with the AI service
+            result = ai_service.process_mixed_files(
+                file_paths=file_paths,
+                system_prompt=prompt_text,
+                user_prompt=user_prompt,
+                output_path=output_path
+            )
+            
+            # Determine file extension based on output type
+            file_extension = "txt"  # Default
+            output_type_response = db_service.supabase.table("contenttype").select("*").eq("id", task["output_content_type_id"]).execute()
+            if output_type_response.data and len(output_type_response.data) > 0:
+                output_type = output_type_response.data[0]
+                if output_type["name"]:
+                    if output_type["name"].lower() == "json":
+                        file_extension = "json"
+                    elif output_type["name"].lower() == "html":
+                        file_extension = "html"
+                    elif output_type["name"].lower() == "pdf":
+                        file_extension = "pdf"
+            
+            # Save output file in database
+            final_output_path = f"{output_dir}/output_{task_id}.txt"
+            if output_path != final_output_path:
+                os.rename(output_path, final_output_path)
+            
+            output_data = {
+                "task_id": task_id,
+                "file_name": f"output_{task_id}.{file_extension}",
+                "file_type_id": task["output_content_type_id"],
+                "stored_location": final_output_path,
+                "file_category": "output",
+                "need_ocr": False
+            }
+            
+            # Store file record in database
+            db_service.supabase.table("filestore").insert(output_data).execute()
+            
+            # 5. Send email with the results
+            email_sent = email_service.send_task_output(task_id)
+            if not email_sent:
+                logger.warning(f"Email could not be sent for task: {task_id}")
+            
+            # Update task status to Completed
+            db_service.update_task_status(task_id, "Completed")
+            logger.info(f"Task {task_id} completed successfully")
+            
+            return jsonify({
+                "status": "success", 
+                "message": "Task processed successfully",
+                "email_sent": email_sent
+            })
+            
+        except Exception as e:
+            logger.error(f"Error processing task {task_id}: {str(e)}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": str(e)}), 500
+            
+    except Exception as e:
+        logger.error(f"Error in process_task_by_id: {str(e)}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/process_queue', methods=['POST'])
+def process_queue():
+    """Process all queued tasks"""
+    try:
+        # Get all queued tasks
+        queued_tasks = db_service.get_queued_tasks()
+        if not queued_tasks:
+            return jsonify({"status": "success", "message": "No queued tasks found"}), 200
+        
+        results = []
+        for task in queued_tasks:
+            task_id = task["id"]
+            # Process each task
+            response = process_task_by_id(task_id)
+            results.append({
+                "task_id": task_id,
+                "status": "processed"
+            })
+        
+        return jsonify({
+            "status": "success", 
+            "message": f"Processed {len(results)} tasks",
+            "tasks": results
+        })
         
     except Exception as e:
-        print(f"Error processing task {task['id']}: {str(e)}")
-        update_task_status(task["id"], "Failed")
+        logger.error(f"Error in process_queue: {str(e)}")
+        return jsonify({"status": "error", "message": str(e)}), 500
 
-if __name__ == "__main__":
-    process_task()
+if __name__ == '__main__':
+    # Set Flask environment variables
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "False").lower() == "true"
+    
+    # Run the Flask app
+    app.run(host='0.0.0.0', port=port, debug=debug)

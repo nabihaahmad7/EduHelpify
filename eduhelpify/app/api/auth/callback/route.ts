@@ -16,28 +16,29 @@ export async function GET(request: Request) {
     const { data: { session } } = await supabase.auth.exchangeCodeForSession(code);
 
     if (session) {
-      // Check if user settings exist for this user
-      const { data: existingSettings, error: settingsError } = await supabase
-        .from('user_settings')
+      // Check if user already exists in our custom User table
+      const { data: existingUser, error: userError } = await supabase
+        .from('User')
         .select('id')
-        .eq('user_id', session.user.id)
+        .eq('id', session.user.id)
         .maybeSingle();
 
-      // If no settings exist, create default settings
-      if (!existingSettings && settingsError?.code === 'PGRST116') {
+      // If user doesn't exist in our custom table, create one
+      if (!existingUser) {
         try {
+          // Create user in our custom User table
           await supabase
-            .from('user_settings')
+            .from('User')
             .insert({
-              user_id: session.user.id,
-              bot_name: "MeetO by MLSense",
-              bot_image_url: null,
-              email_notifications: true,
-              enable_auto_join: true
+              id: session.user.id, // Use the same ID as auth.users
+              email: session.user.email,
+              username: session.user.email.split('@')[0], // Default username from email
+              password: crypto.randomUUID(), // Generate a random password since we don't need it for OAuth
+              role: 'user'
             });
-          console.log('Created default user settings for new user:', session.user.id);
+          console.log('Created new user in database:', session.user.id);
         } catch (error) {
-          console.error('Error creating default user settings:', error);
+          console.error('Error creating user in database:', error);
         }
       }
     }

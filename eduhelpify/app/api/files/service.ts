@@ -9,7 +9,7 @@ export class FileStoreService {
    */
   async saveFileMetadata(fileData: FileStoreData): Promise<{ file: any; error: any }> {
     const { data: file, error } = await supabase
-      .from('FileStore')
+      .from('filestore')
       .insert(fileData)
       .select('*')
       .single();
@@ -22,7 +22,7 @@ export class FileStoreService {
    */
   async getFilesByTaskId(taskId: string): Promise<{ files: any[]; error: any }> {
     const { data: files, error } = await supabase
-      .from('FileStore')
+      .from('filestore')
       .select('*')
       .eq('task_id', taskId);
 
@@ -55,7 +55,7 @@ export class FileStoreService {
 
     // Then, delete the file metadata from the database
     const { error: dbError } = await supabase
-      .from('FileStore')
+      .from('filestore')
       .delete()
       .eq('id', fileId);
 
