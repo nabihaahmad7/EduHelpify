@@ -8,16 +8,27 @@ export default function MainContent() {
   const { theme, isDarkMode } = useTheme();
 
   const [prompt, setPrompt] = useState("");
-  const [file, setFile] = useState(null);
-  const [messages, setMessages] = useState([]);
+  const [files, setFiles] = useState([]);         
+  const [file, setFile] = useState(null);        
+  const [error, setError] = useState(null);      
+  const [messages, setMessages] = useState([]); 
   const [loading, setLoading] = useState(false);
 
   const chatAreaRef = useRef(null);
 
+  // Handle file selection and validation (only .txt and .pdf files)
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      if (selectedFile.type === 'text/plain' || selectedFile.type === 'application/pdf') {
+        setFile(selectedFile);
+        setError(null);
+      } else {
+        setError('Please upload a .txt or .pdf file');
+      }
+    }
   };
-// Dummy response
+
   const handleSubmit = async () => {
     if (!prompt && !file) {
       alert("Please enter a prompt or upload a file!");
@@ -26,67 +37,45 @@ export default function MainContent() {
 
     setMessages(prev => [
       ...prev,
-      { type: "user", content: prompt || (file ? file.name : "File Uploaded") }
+      { type: "user", content: prompt || file?.name }
     ]);
-
     setLoading(true);
-    setPrompt("");
-    setFile(null);
 
-    setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        { type: "bot", content: "This is a dummy AI response based on your message." }
-      ]);
+    try {
+      // Simulate task creation
+      const fakeTaskId = Date.now(); // Replace with real task ID from backend if needed
+
+      // Upload file with task_id
+      if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("task_id", fakeTaskId.toString());
+
+        await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+      }
+
+      // Dummy AI response
+      setTimeout(() => {
+        setMessages(prev => [
+          ...prev,
+          { type: "bot", content: "File and prompt submitted successfully." }
+        ]);
+        setLoading(false);
+      }, 1000);
+
+      // Reset input
+      setPrompt("");
+      setFile(null);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      alert("Something went wrong!");
       setLoading(false);
-    }, 1500);
+    }
   };
-  // const handleSubmit = async () => {
-  //   if (!prompt && !file) {
-  //     alert("Please enter a prompt or upload a file!");
-  //     return;
-  //   }
 
-  //   const formData = new FormData();
-  //   if (file) {
-  //     formData.append("file", file);
-  //   }
-  //   formData.append("prompt", prompt);
-
-  //   setLoading(true);
-
-  //   try {
-  //     const res = await fetch("/api/your-endpoint", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-
-  //     if (!res.ok) {
-  //       throw new Error("Server Error");
-  //     }
-
-  //     const data = await res.json();
-
-  //     // Add both prompt and response to messages
-  //     setMessages(prev => [
-  //       ...prev,
-  //       { type: "user", content: prompt || (file ? file.name : "File Uploaded") },
-  //       { type: "bot", content: data.response }
-  //     ]);
-
-  //     // Reset input
-  //     setPrompt("");
-  //     setFile(null);
-
-  //   } catch (error) {
-  //     console.error("API Error:", error);
-  //     alert("Something went wrong!");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // Scroll to the bottom when a new message is added
   useEffect(() => {
     if (chatAreaRef.current) {
       chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
@@ -95,10 +84,10 @@ export default function MainContent() {
 
   return (
     <div className="flex flex-col overflow-hidden" style={{ height: "89vh" }}>
-      <main className="flex-1 flex flex-col" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <main className="flex-1 flex flex-col" style={{ height: '100%' }}>
         <div className={`flex flex-col flex-1 p-3 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
           <div className="max-w-4xl mx-auto flex flex-col flex-1 w-full">
-            {/* Top Section */}
+            {/* Welcome Section */}
             {messages.length === 0 && (
               <div className="mb-6 text-center w-full">
                 <h2 className="text-2xl font-bold mb-2" style={{ color: theme.colors.text }}>
@@ -109,14 +98,14 @@ export default function MainContent() {
                 </p>
               </div>
             )}
-  
+
             {/* Chat Area */}
             <div
-              className="flex-1 overflow-y-auto rounded-lg shadow p-4 space-y-4 w-full"
+              className="flex-1 overflow-y-auto rounded-lg shadow pt-4 pb-25 pl-4 pr-4 space-y-4 w-full"
               style={{
                 backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                minHeight:"85vh",
-                maxHeight: 'calc(89vh - 180px)',  
+                minHeight: "85vh",
+                maxHeight: '82vh',
                 overflowY: 'auto',
               }}
               ref={chatAreaRef}
@@ -143,7 +132,7 @@ export default function MainContent() {
                 ))
               )}
             </div>
-  
+
             {/* Input Section */}
             <div className="p-4 border-t w-full"
               style={{
@@ -158,12 +147,35 @@ export default function MainContent() {
                   backgroundColor: isDarkMode ? theme.colors.background : 'rgb(243, 244, 246)'
                 }}
               >
-                {/* Upload File */}
-                <label className="p-2 mr-2 rounded-full hover:bg-opacity-20 hover:bg-gray-500 cursor-pointer" style={{ color: theme.colors.icon }}>
-                  <FontAwesomeIcon icon={faPlus} />
-                  <input type="file" className="hidden" onChange={handleFileChange} />
-                </label>
-  {/* Show uploaded file name before sending */}
+                {/* File upload section */}
+                <div className="grid gap-1 mr-4">
+  <div>
+    {file ? (
+      <div className="flex items-center gap-2">
+        <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4 mr-2" />
+        <span className="text-sm">{file.name}</span>
+        <button
+          className="px-2 py-1 bg-red-500 text-white text-xs rounded"
+          onClick={() => setFile(null)}
+        >
+          Remove
+        </button>
+      </div>
+    ) : (
+      <label className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer transition-colors duration-200">
+        <FontAwesomeIcon icon={faPlus} className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
+        <input
+          type="file"
+          className="hidden"
+          onChange={handleFileChange}
+          accept=".txt,.pdf"
+        />
+      </label>
+    )}
+  </div>
+  {error && <p className="text-red-500 text-sm">{error}</p>}
+</div>
+
 
 
                 {/* Textarea */}
@@ -179,7 +191,7 @@ export default function MainContent() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 ></textarea>
-  
+
                 {/* Send Button */}
                 <div className="flex items-center ml-2">
                   <button
@@ -195,11 +207,10 @@ export default function MainContent() {
                 </div>
               </div>
             </div>
-  
+
           </div>
         </div>
       </main>
     </div>
   );
-  
 }
