@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
       <Header toggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
         {/* Pass sidebarVisible and toggleSidebar to Sidebar */}
-        <Sidebar isSidebarVisible={sidebarVisible} toggleSidebar={toggleSidebar} />
+        <Sidebar  isSidebarVisible={sidebarVisible} toggleSidebar={toggleSidebar} />
         <main className="flex-1 overflow-y-auto">
           {children}
         </main>

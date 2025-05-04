@@ -3,9 +3,11 @@ import { useState, useRef, useEffect } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faPlus, faComments } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../../contexts/AuthContext';
 
 export default function MainContent() {
   const { theme, isDarkMode } = useTheme();
+  const { user } = useAuth();
 
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState([]);         
@@ -13,8 +15,56 @@ export default function MainContent() {
   const [error, setError] = useState(null);      
   const [messages, setMessages] = useState([]); 
   const [loading, setLoading] = useState(false);
+  const [contentTypes, setContentTypes] = useState([]);
+  const [selectedOutputType, setSelectedOutputType] = useState(null);
+  const [taskConfig, setTaskConfig] = useState(null);
 
   const chatAreaRef = useRef(null);
+
+  // Fetch content types
+  useEffect(() => {
+    const fetchContentTypes = async () => {
+      try {
+        const response = await fetch("/api/contentTypes");
+        const data = await response.json();
+        if (data.success && data.contentTypes) {
+          setContentTypes(data.contentTypes);
+          
+          // Default to PDF if available
+          const pdfType = data.contentTypes.find(type => type.name === 'PDF');
+          if (pdfType) {
+            setSelectedOutputType(pdfType.id);
+          } else if (data.contentTypes.length > 0) {
+            setSelectedOutputType(data.contentTypes[0].id);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch content types:", error);
+      }
+    };
+
+    fetchContentTypes();
+  }, []);
+
+  // Fetch task config from settings page
+  useEffect(() => {
+    const fetchTaskConfig = async () => {
+      try {
+        // Use actual user ID from auth context if available
+        const userId = user?.id ;
+        const response = await fetch(`/api/task/config?user_id=${userId}`);
+        const data = await response.json();
+        
+        if (data.success && data.taskConfig) {
+          setTaskConfig(data.taskConfig);
+        }
+      } catch (error) {
+        console.error("Failed to fetch task config:", error);
+      }
+    };
+
+    fetchTaskConfig();
+  }, [user]);
 
   // Handle file selection and validation (only .txt and .pdf files)
   const handleFileChange = (e) => {
@@ -35,6 +85,16 @@ export default function MainContent() {
       return;
     }
 
+    if (!selectedOutputType) {
+      alert("Please select an output type!");
+      return;
+    }
+
+    if (!taskConfig) {
+      alert("No task configuration found. Please set up your preferences in Settings first.");
+      return;
+    }
+
     setMessages(prev => [
       ...prev,
       { type: "user", content: prompt || file?.name }
@@ -42,36 +102,50 @@ export default function MainContent() {
     setLoading(true);
 
     try {
-      // Simulate task creation
-      const fakeTaskId = Date.now(); // Replace with real task ID from backend if needed
-
-      // Upload file with task_id
+      // Create a task using the config ID directly from the settings page
+      const formData = new FormData();
+      // Use actual user ID from auth context if available
+      const userId = user?.id || "current-user-id";
+      formData.append("user_id", userId);
+      formData.append("task_config_id", taskConfig.id);
+      formData.append("input_content_type_id", "c0a80101-0000-0000-0000-000000000021");
+      formData.append("output_content_type_id", selectedOutputType);
+      formData.append("user_prompt", prompt);
+      
       if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("task_id", fakeTaskId.toString());
-
-        await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
-        });
+        formData.append("files", file);
       }
 
-      // Dummy AI response
-      setTimeout(() => {
-        setMessages(prev => [
-          ...prev,
-          { type: "bot", content: "File and prompt submitted successfully." }
-        ]);
-        setLoading(false);
-      }, 1000);
+      const taskResponse = await fetch("/api/task", {
+        method: "POST",
+        body: formData,
+      });
+      
+      const taskData = await taskResponse.json();
+      
+      if (!taskData.success) {
+        throw new Error("Failed to create task");
+      }
+
+      // Success response
+      setMessages(prev => [
+        ...prev,
+        { 
+          type: "bot", 
+          content: "Task created successfully! Your document will be processed and the results will be available shortly." 
+        }
+      ]);
 
       // Reset input
       setPrompt("");
       setFile(null);
     } catch (error) {
-      console.error("Upload failed:", error);
-      alert("Something went wrong!");
+      console.error("Task creation failed:", error);
+      setMessages(prev => [
+        ...prev,
+        { type: "bot", content: "Failed to create task. Please try again later." }
+      ]);
+    } finally {
       setLoading(false);
     }
   };
@@ -149,34 +223,32 @@ export default function MainContent() {
               >
                 {/* File upload section */}
                 <div className="grid gap-1 mr-4">
-  <div>
-    {file ? (
-      <div className="flex items-center gap-2">
-        <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4 mr-2" />
-        <span className="text-sm">{file.name}</span>
-        <button
-          className="px-2 py-1 bg-red-500 text-white text-xs rounded"
-          onClick={() => setFile(null)}
-        >
-          Remove
-        </button>
-      </div>
-    ) : (
-      <label className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer transition-colors duration-200">
-        <FontAwesomeIcon icon={faPlus} className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
-        <input
-          type="file"
-          className="hidden"
-          onChange={handleFileChange}
-          accept=".txt,.pdf"
-        />
-      </label>
-    )}
-  </div>
-  {error && <p className="text-red-500 text-sm">{error}</p>}
-</div>
-
-
+                  <div>
+                    {file ? (
+                      <div className="flex items-center gap-2">
+                        <FontAwesomeIcon icon={faPaperPlane} className="h-4 w-4 mr-2" />
+                        <span className="text-sm">{file.name}</span>
+                        <button
+                          className="px-2 py-1 bg-red-500 text-white text-xs rounded"
+                          onClick={() => setFile(null)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer transition-colors duration-200">
+                        <FontAwesomeIcon icon={faPlus} className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
+                        <input
+                          type="file"
+                          className="hidden"
+                          onChange={handleFileChange}
+                          accept=".txt,.pdf"
+                        />
+                      </label>
+                    )}
+                  </div>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                </div>
 
                 {/* Textarea */}
                 <textarea
@@ -191,6 +263,27 @@ export default function MainContent() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                 ></textarea>
+                
+                {/* Output Type Dropdown */}
+                <div className="ml-2">
+                  <select 
+                    className="px-3 py-2 border rounded text-sm"
+                    style={{
+                      backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
+                      color: theme.colors.text,
+                      borderColor: theme.colors.border
+                    }}
+                    value={selectedOutputType || ""}
+                    onChange={(e) => setSelectedOutputType(e.target.value)}
+                  >
+                    <option value="" disabled>Output Format</option>
+                    {contentTypes.map(type => (
+                      <option key={type.id} value={type.id}>
+                        {type.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
                 {/* Send Button */}
                 <div className="flex items-center ml-2">
@@ -207,7 +300,6 @@ export default function MainContent() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </main>

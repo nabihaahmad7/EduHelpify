@@ -10,7 +10,7 @@ export class TaskService {
    */
   async createTask(taskData: TaskData): Promise<{ task: any; error: any }> {
     const { data: task, error } = await supabase
-      .from('Task')
+      .from('task')
       .insert(taskData)
       .select('*')
       .single();
@@ -23,7 +23,7 @@ export class TaskService {
    */
   async getTaskById(taskId: string): Promise<{ task: any; error: any }> {
     const { data: task, error } = await supabase
-      .from('Task')
+      .from('task')
       .select('*')
       .eq('id', taskId)
       .single();
@@ -39,7 +39,7 @@ export class TaskService {
     updateData: Partial<TaskData>
   ): Promise<{ task: any; error: any }> {
     const { data: task, error } = await supabase
-      .from('Task')
+      .from('task')
       .update(updateData)
       .eq('id', taskId)
       .select('*')
@@ -53,7 +53,7 @@ export class TaskService {
    */
   async deleteTaskById(taskId: string): Promise<{ success: boolean; error: any }> {
     const { error } = await supabase
-      .from('Task')
+      .from('task')
       .delete()
       .eq('id', taskId);
 

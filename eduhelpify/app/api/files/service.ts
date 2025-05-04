@@ -1,6 +1,7 @@
-import { supabase } from '@/lib/supabase';
-import { Database } from '@/types/supabase';
-
+import { supabase } from '../../../lib/supabase';
+import { Database } from '../../../types/supabase';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 export type FileStoreData = Database['public']['Tables']['FileStore']['Insert'];
 
 export class FileStoreService {
@@ -32,14 +33,27 @@ export class FileStoreService {
   /**
    * Upload file to Supabase storage
    */
+  /**
+   * Save file to local directory
+   */
+  /**
+   * Save file to local directory
+   */
   async uploadFile(file: File, storagePath: string): Promise<{ path: string | null; error: any }> {
-    const { data, error } = await supabase.storage
-      .from('files')
-      .upload(storagePath, file);
-
-    return { path: data?.path || null, error };
+    try {
+      const filePath = path.join(process.cwd(), 'docs/input', storagePath);
+      
+      // Ensure directory exists
+      await fs.mkdir(path.dirname(filePath), { recursive: true });
+      
+      const buffer = Buffer.from(await file.arrayBuffer());
+      await fs.writeFile(filePath, buffer);
+      
+      return { path: filePath, error: null };
+    } catch (error) {
+      return { path: null, error };
+    }
   }
-
   /**
    * Delete file from Supabase storage and metadata from database
    */

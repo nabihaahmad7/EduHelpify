@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { taskService } from './service';
+import { taskService } from '../task/service';
 import { fileStoreService } from '../files/service';
 import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs';
+import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,8 +13,9 @@ export async function POST(request: NextRequest) {
     // Extract task data from form
     const userId = formData.get('user_id') as string;
     const taskConfigId = formData.get('task_config_id') as string;
-    const inputContentTypeId = formData.get('input_content_type_id') as string;
+    const inputContentTypeId = formData.get('input_content_type_id') as string || 'c0a80101-0000-0000-0000-000000000021';
     const outputContentTypeId = formData.get('output_content_type_id') as string;
+    const userPrompt = formData.get('user_prompt') as string;
     
     // Create the task
     const { task, error } = await taskService.createTask({
@@ -20,6 +23,7 @@ export async function POST(request: NextRequest) {
       task_config_id: taskConfigId || undefined,
       input_content_type_id: inputContentTypeId || undefined,
       output_content_type_id: outputContentTypeId || undefined,
+      user_prompt: userPrompt || undefined,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     });
@@ -35,34 +39,34 @@ export async function POST(request: NextRequest) {
     const files = formData.getAll('files') as File[];
     const fileResponses = [];
     
+    // Create the directory path if it doesn't exist
+    const uploadDir = path.join(process.cwd(), 'pipeline', 'process_docs', 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    
     // Process and store files if any
     if (files && files.length > 0) {
       for (const file of files) {
         if (file.size > 0) {
-          // Generate a unique path for the file in storage
-          // Generate a unique path for the file in storage
-          const fileExtension = file.name.split('.').pop();
-          const fileName = file.name;
-          const storagePath = fileName;
+          // Get file extension
+          const fileExtension = file.name.split('.').pop() || '';
+          const fileName = `${taskId}_${Date.now()}.${fileExtension}`;
+          const filePath = path.join(uploadDir, fileName);
           
-          // Upload the file to storage
-          const { path, error: uploadError } = await fileStoreService.uploadFile(file, storagePath);
-          
-          if (uploadError) {
-            return NextResponse.json(
-              { error: 'Failed to upload file', details: uploadError },
-              { status: 400 }
-            );
-          }
+          // Convert File to Buffer and save it
+          const buffer = Buffer.from(await file.arrayBuffer());
+          fs.writeFileSync(filePath, buffer);
           
           // Save file metadata to the database
           const { file: fileRecord, error: fileError } = await fileStoreService.saveFileMetadata({
             task_id: taskId,
             file_name: file.name,
             file_size: file.size,
-            stored_location: path,
-            need_ocr: formData.get('need_ocr') === 'False',
+            stored_location: filePath,
+            need_ocr: fileExtension.toLowerCase() === 'pdf' || fileExtension.toLowerCase() === 'docx',
             file_category: 'input',
+            file_type_id: inputContentTypeId,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
           });
@@ -87,35 +91,6 @@ export async function POST(request: NextRequest) {
     
   } catch (error) {
     console.error('Error creating task:', error);
-    return NextResponse.json(
-      { error: 'Internal server error', details: error },
-      { status: 500 }
-    );
-  }
-}
-
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('user_id');
-    
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'User ID is required' },
-        { status: 400 }
-      );
-    }
-    
-    // Here you would get all tasks for a user
-    // This is a placeholder for the actual implementation
-    
-    return NextResponse.json({
-      success: true,
-      tasks: [], // Replace with actual data
-    });
-    
-  } catch (error) {
-    console.error('Error getting tasks:', error);
     return NextResponse.json(
       { error: 'Internal server error', details: error },
       { status: 500 }
