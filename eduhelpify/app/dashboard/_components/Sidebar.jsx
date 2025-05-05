@@ -15,7 +15,7 @@ export default function Sidebar({ isSidebarVisible, toggleSidebar }) {
   const pathname = usePathname();
 
   const handleLinkClick = () => {
-    if (window.innerWidth < 768) { 
+    if (window.innerWidth < 768) { // Only close sidebar on mobile
       toggleSidebar(); // Close the sidebar
     }
   };
@@ -31,18 +31,18 @@ export default function Sidebar({ isSidebarVisible, toggleSidebar }) {
               onClick={handleLinkClick} // Close sidebar on click
             >
               <FontAwesomeIcon icon={faTachometerAlt} className="w-5" style={{ color: theme.colors.icon }} />
-              <span>New Task</span>
+              <span>Dashboard</span>
             </Link>
           </li>
           <li>
-            {/* <Link 
+            <Link 
               href="/dashboard/myfiles" 
               className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-700 ${pathname === '/dashboard/myfiles' ? 'bg-gray-600' : ''}`} 
               onClick={handleLinkClick} // Close sidebar on click
             >
               <FontAwesomeIcon icon={faFile} className="w-5" style={{ color: theme.colors.icon }} />
               <span>My Files</span>
-            </Link> */}
+            </Link>
           </li>
           <li>
             <Link 
