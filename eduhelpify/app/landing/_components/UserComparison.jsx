@@ -18,10 +18,12 @@ import {
   faNoteSticky
 } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useRouter } from 'next/navigation';
 
 export default function UserComparison() {
   const [activeTab, setActiveTab] = useState('teacher');
   const { theme, isDarkMode } = useTheme();
+  const router = useRouter();
 
   const teacherFeatures = [
     {
@@ -163,12 +165,13 @@ export default function UserComparison() {
               ))}
             </ul>
             <div className="mt-8">
-              <button 
-                className="w-full py-3 rounded-lg text-white transition-colors duration-300 whitespace-nowrap"
-                style={{
-                  backgroundColor: activeTab === 'teacher' ? theme.colors.primary : theme.colors.secondary
-                }}
-              >
+            <button 
+  className="w-full py-3 rounded-lg text-white transition-colors duration-300 whitespace-nowrap cursor-pointer"
+  style={{
+    backgroundColor: activeTab === 'teacher' ? theme.colors.primary : theme.colors.secondary
+  }}
+  onClick={() => router.push('/auth')}
+>
                 Get Started Free
               </button>
             </div>

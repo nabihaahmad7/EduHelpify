@@ -18,9 +18,9 @@ export default function Form() {
   const [contentTypes, setContentTypes] = useState([]);
   const [selectedOutputType, setSelectedOutputType] = useState("");
   const [formValid, setFormValid] = useState(false);
+  const [taskConfig, setTaskConfig] = useState(null);
 
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-
   // Check form validity whenever inputs change
   useEffect(() => {
     const isValid = email && 
@@ -48,6 +48,26 @@ export default function Form() {
 
     fetchContentTypes();
   }, []);
+
+  useEffect(() => {
+    const fetchTaskConfig = async () => {
+      try {
+        // Use actual user ID from auth context if available
+        const userId = user?.id ;
+        console.log(userId,"ye meri id")
+        const response = await fetch(`/api/task/config?user_id=${userId}`);
+        const data = await response.json();
+        
+        if (data.success && data.taskConfig) {
+          setTaskConfig(data.taskConfig);
+        }
+      } catch (error) {
+        console.error("Failed to fetch task config:", error);
+      }
+    };
+
+    fetchTaskConfig();
+  }, [user]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
@@ -96,7 +116,10 @@ export default function Form() {
 
     try {
       const formData = new FormData();
-      formData.append("email", email);
+      const userId = user?.id || "current-user-id";
+      formData.append("user_id", userId);
+      formData.append("task_config_id", taskConfig.id);
+      formData.append("input_content_type_id", "c0a80101-0000-0000-0000-000000000021");
       formData.append("output_content_type_id", selectedOutputType);
       formData.append("user_prompt", prompt);
       formData.append("file", file);

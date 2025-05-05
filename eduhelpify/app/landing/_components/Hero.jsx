@@ -1,9 +1,11 @@
 'use client'
 import Image from 'next/image';
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useRouter } from 'next/navigation';
 
 export default function Hero() {
   const { theme, isDarkMode } = useTheme();
+  const router = useRouter();
 
   return (
     <section 
@@ -32,15 +34,18 @@ export default function Hero() {
               Revolutionize education with our intelligent platform that helps teachers create engaging content and enables students to learn more effectively.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <button 
-                className="px-9 py-3 rounded-lg transition-colors duration-300 whitespace-nowrap hover:opacity-90"
-                style={{
-                  backgroundColor: theme.colors.primary,
-                  color: theme.colors.buttonText
-                }}
-              >
-                <i className="fas fa-chalkboard-teacher mr-2"></i>Try for Free
-              </button>
+            <button 
+  className="px-9 py-3 rounded-lg transition-colors duration-300 whitespace-nowrap hover:opacity-90 cursor-pointer relative z-10"
+  style={{
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.buttonText
+  }}
+  onClick={() => {
+    router.push('/auth');
+  }}
+>
+  <i className="fas fa-chalkboard-teacher mr-2"></i>Try for Free
+</button>
             </div>
           </div>
           

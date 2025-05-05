@@ -6,15 +6,17 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { signIn } from 'next-auth/react';
 import { supabaseClient } from '../../lib/supabaseCient';
 import { useTheme } from '../../contexts/ThemeContext';
-import ThemeToggle from '../landing/_components/themetoggle';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { theme, isDarkMode } = useTheme();
+  const { theme } = useTheme();
+
   const handleSocialLogin = async (provider) => {
     try {
-      // For Google auth with Supabase
+      setIsLoading(true);
+      setErrorMessage('');
+      
       if (provider === 'google') {
         const { error } = await supabaseClient.auth.signInWithOAuth({
           provider: 'google',
@@ -23,61 +25,77 @@ export default function AuthPage() {
           }
         });
         
-        if (error) {
-          setErrorMessage(`Failed to sign in with ${provider}: ${error.message}`);
-        }
+        if (error) throw error;
       } else {
-        // Fall back to next-auth for other providers if needed
         const result = await signIn(provider, { callbackUrl: '/dashboard' });
-        
-        if (result?.error) {
-          setErrorMessage(`Failed to sign in with ${provider}`);
-        }
+        if (result?.error) throw new Error(result.error);
       }
     } catch (error) {
-      setErrorMessage(`Failed to sign in with ${provider}`);
+      setErrorMessage(error.message || `Failed to sign in with ${provider}`);
+    } finally {
+      setIsLoading(false);
     }
   };
-  
+
   return (
-    <div className="min-h-screen flex">
-      {/* First Column - Login Content */}
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-full max-w-md text-center">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: theme.colors.background }}>
+      <div className="w-full max-w-md">
+        {/* Auth Card */}
+        <div 
+          className="p-8 rounded-xl shadow-sm border" 
+          style={{
+            backgroundColor: theme.colors.authBg,
+            borderColor: theme.colors.authBorder
+          }}
+        >
           {/* Header */}
-          <div className="mb-8" style={{ backgroundColor: theme.colors.background ,color: theme.colors.text }}>
-            <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2" style={{ color: theme.colors.text }}>EduHelpify</h1>
-            <p className="text-2xl text-gray-700 dark:text-gray-200" style={{ color: theme.colors.text }}>the Ultimate Educational Assistant App</p>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-4" style={{ color: theme.colors.text }}>to help you get things done in seconds</p>
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-bold mb-2" style={{ color: theme.colors.text }}>EduHelpify</h1>
+            <p className="text-lg" style={{ color: theme.colors.text }}>The Ultimate Educational Assistant</p>
           </div>
-          
-          {/* Card with Sign-In Button */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6" style={{ backgroundColor: theme.colors.authBg, color: theme.colors.authText }}>
-            {errorMessage && (
-              <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm" style={{ backgroundColor: theme.colors.authBg, color: theme.colors.authText }}>
-                {errorMessage}
-              </div>
-            )}
-            
-            <button
-              onClick={() => handleSocialLogin('google')}
-              disabled={isLoading}
-              style={{ backgroundColor: theme.colors.authButton, color: theme.colors.authButtonText }}
-              className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-lg transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
+
+          {/* Error Message */}
+          {errorMessage && (
+            <div 
+              className="mb-6 p-3 flex items-start rounded-lg text-sm"
+              style={{
+                backgroundColor: `${theme.colors.error}20`,
+                color: theme.colors.error
+              }}
             >
-              <FontAwesomeIcon icon={faGoogle} className="text-[#DB4437]" />
-              <span className="text-gray-700 dark:text-gray-200" style={{ color: theme.colors.authText }}>
-                {isLoading ? "Signing in..." : "Sign in with Google"}
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      {/* Second Column - Background with Theme Toggle */}
-      <div className="w-1/2 bg-gradient-to-br from-blue-500 to-purple-600 relative">
-        <div className="absolute top-6 right-6">
-          {/* <ThemeToggle /> */}
+              <svg 
+                className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
+          {/* Google Sign-In Button */}
+          <button
+            onClick={() => handleSocialLogin('google')}
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 hover:bg-opacity-90"
+            style={{
+              backgroundColor: theme.colors.authButton,
+              color: theme.colors.authButtonText,
+              border: `1px solid ${theme.colors.authBorder}`
+            }}
+          >
+            <FontAwesomeIcon icon={faGoogle} className="text-lg" />
+            <span className="font-medium">
+              {isLoading ? "Signing in..." : "Continue with Google"}
+            </span>
+          </button>
+
+          {/* Footer Note */}
+          <p className="mt-6 text-center text-sm" style={{ color: theme.colors.placeholder }}>
+            By continuing, you agree to our Terms of Service
+          </p>
         </div>
       </div>
     </div>
