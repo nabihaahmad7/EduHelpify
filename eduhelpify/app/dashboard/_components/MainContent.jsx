@@ -66,19 +66,33 @@ export default function MainContent() {
     fetchTaskConfig();
   }, [user]);
 
-  // Handle file selection and validation (only .txt and .pdf files)
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      if (selectedFile.type === 'text/plain' || selectedFile.type === 'application/pdf') {
+      // Check file size (30MB limit)
+      if (selectedFile.size > 30 * 1024 * 1024) {
+        setError('File size exceeds 30MB limit');
+        return;
+      }
+  
+      if (
+        selectedFile.type === 'text/plain' ||
+        selectedFile.type === 'application/pdf' ||
+        selectedFile.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
+        selectedFile.type === 'image/png' ||
+        selectedFile.type === 'image/jpeg' ||
+        selectedFile.type === 'image/jpg' ||
+        selectedFile.type === 'audio/mpeg' ||
+        selectedFile.type === 'audio/wav' ||
+        selectedFile.type === 'audio/mp3'
+      ) {
         setFile(selectedFile);
         setError(null);
       } else {
-        setError('Please upload a .txt or .pdf file');
+        setError('Please upload a valid file (text, PDF, PowerPoint, image, or audio)');
       }
     }
   };
-
   const handleSubmit = async () => {
     if (!prompt && !file) {
       alert("Please enter a prompt or upload a file!");
@@ -242,8 +256,8 @@ export default function MainContent() {
                           type="file"
                           className="hidden"
                           onChange={handleFileChange}
-                          accept=".txt,.pdf"
-                        />
+                          accept=".txt,.pdf,.pptx,.png,.jpg,.jpeg,.mp3,.wav"
+                          />
                       </label>
                     )}
                   </div>
