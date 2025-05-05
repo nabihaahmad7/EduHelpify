@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 
 // Define public routes that don't require authentication
-const publicRoutes = ['/landing', '/auth', '/login', '/signup', '/reset-password'];
+const publicRoutes = ['/', '/auth', '/login', '/signup', '/reset-password'];
 
 export default function ProtectedRoute({ children }) {
   const { user, isLoading } = useAuth();
@@ -22,7 +22,7 @@ export default function ProtectedRoute({ children }) {
     // 2. No user exists
     // 3. Current route is not public
     if (!isLoading && !user && !isPublicRoute) {
-      router.push('/landing');
+      router.push('/');
     }
   }, [user, isLoading, router, pathname, isPublicRoute]);
 

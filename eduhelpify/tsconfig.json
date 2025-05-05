@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/dashboard/_components/spinner.jsx"  ],
   "exclude": [
     "node_modules"
   ]

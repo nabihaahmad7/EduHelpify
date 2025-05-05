@@ -67,7 +67,7 @@ class DatabaseService:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         
         # Save file content
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w',encoding='utf-8') as file:
             file.write(content)
         
         # Create file store record

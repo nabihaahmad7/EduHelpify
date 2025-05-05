@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { signIn } from 'next-auth/react';
 import { supabaseClient } from '../../lib/supabaseCient';
-import ThemeToggle from "../landing/_components/themetoggle";
 import { useTheme } from '../../contexts/ThemeContext';
+import ThemeToggle from '../landing/_components/themetoggle';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +77,7 @@ export default function AuthPage() {
       {/* Second Column - Background with Theme Toggle */}
       <div className="w-1/2 bg-gradient-to-br from-blue-500 to-purple-600 relative">
         <div className="absolute top-6 right-6">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
       </div>
     </div>

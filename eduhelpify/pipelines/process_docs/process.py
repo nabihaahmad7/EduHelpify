@@ -8,7 +8,7 @@ from utils.email_service import EmailService
 import dotenv
 
 dotenv.load_dotenv(override=True)
-
+STORE_LOCATION = os.getenv("STORE_LOCATION")
 app = Flask(__name__)
 
 # Initialize services
@@ -36,6 +36,17 @@ def process_task_by_id(task_id):
             return jsonify({"status": "error", "message": "Task not found"}), 404
         
         task = task_response.data[0]
+        output_content_type_id = task.get("output_content_type_id")
+        output_content_type_response = db_service.supabase.table("contenttype").select("*").eq("id", output_content_type_id).execute()
+        logger.info(f"Output content type response: {output_content_type_response}")
+        if not output_content_type_response.data or len(output_content_type_response.data) == 0:
+            logger.error(f"Output content type not found: {output_content_type_id}")
+            db_service.update_task_status(task_id, "Failed")
+            return jsonify({"status": "error", "message": "Output content type not found"}), 400
+        
+        output_content_type = output_content_type_response.data[0]
+        output_content_type_extension = output_content_type.get("extensions")[0].replace(".", "")
+        logger.info(f"Output content type: {output_content_type_extension}")
         
         # 1. Get the task_config_id from the task
         task_config_id = task.get("task_config_id")
@@ -73,25 +84,27 @@ def process_task_by_id(task_id):
         
         # 4. Get the task input files
         input_files = db_service.get_files_by_task_and_type(task_id, "input")
+        logger.info(f"Input files: {input_files}")
         if not input_files:
             logger.error(f"No input files found for task: {task_id}")
             db_service.update_task_status(task_id, "Failed")
             return jsonify({"status": "error", "message": "No input files found"}), 400
-        
+        input_dir = os.path.join(STORE_LOCATION, 'input')
+        logger.info(f"Input directory: {input_dir}")
         # Extract file paths
-        file_paths = [file["stored_location"] for file in input_files if os.path.exists(file["stored_location"])]
+        file_paths = [os.path.join(input_dir, file['file_name']) for file in input_files if os.path.exists(os.path.join(input_dir, file['file_name']))]
         if not file_paths:
             logger.error(f"No valid input file paths found for task: {task_id}")
             db_service.update_task_status(task_id, "Failed")
             return jsonify({"status": "error", "message": "No valid input files found"}), 400
-        
+        logger.info(f"File paths: {file_paths}")
         # User prompt - can be customized based on your needs
         user_prompt = task.get("user_prompt", "")
         
         # Create output directory
-        output_dir = "./test/output"
+        output_dir = os.path.join(STORE_LOCATION, 'output')
         os.makedirs(output_dir, exist_ok=True)
-        output_path = f"{output_dir}/output_{task_id}.txt"
+        output_path = os.path.join(output_dir, f"output_{task_id}.{output_content_type_extension}")
         
         try:
             # Process files with the AI service
@@ -102,7 +115,7 @@ def process_task_by_id(task_id):
                 output_path=output_path
             )
             
-            # Determine file extension based on output type
+        # Determine file extension based on output type
             file_extension = "txt"  # Default
             output_type_response = db_service.supabase.table("contenttype").select("*").eq("id", task["output_content_type_id"]).execute()
             if output_type_response.data and len(output_type_response.data) > 0:
@@ -114,12 +127,14 @@ def process_task_by_id(task_id):
                         file_extension = "html"
                     elif output_type["name"].lower() == "pdf":
                         file_extension = "pdf"
-            
+                    elif output_type["name"].lower() == "pptx":
+                        file_extension = "pptx"
+
             # Save output file in database
-            final_output_path = f"{output_dir}/output_{task_id}.txt"
+            final_output_path = f"{output_dir}/output_{task_id}.{file_extension}"
             if output_path != final_output_path:
                 os.rename(output_path, final_output_path)
-            
+                
             output_data = {
                 "task_id": task_id,
                 "file_name": f"output_{task_id}.{file_extension}",
@@ -191,4 +206,4 @@ if __name__ == '__main__':
     debug = os.environ.get("FLASK_DEBUG", "False").lower() == "true"
     
     # Run the Flask app
-    app.run(host='0.0.0.0', port=port, debug=debug)
+    app.run(host='0.0.0.0', port=port, debug=True)
