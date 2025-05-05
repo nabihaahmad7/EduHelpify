@@ -122,7 +122,7 @@ export default function Form() {
       formData.append("input_content_type_id", "c0a80101-0000-0000-0000-000000000021");
       formData.append("output_content_type_id", selectedOutputType);
       formData.append("user_prompt", prompt);
-      formData.append("file", file);
+      formData.append("files", file);
 
       const response = await fetch("/api/task", {
         method: "POST",
