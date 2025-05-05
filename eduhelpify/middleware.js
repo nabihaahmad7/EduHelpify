@@ -2,7 +2,7 @@ import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 
 // These routes don't require authentication
-const publicRoutes = ['/landing', '/auth', '/login', '/signup', '/reset-password'];
+const publicRoutes = ['/', '/auth', '/login', '/signup', '/reset-password'];
 
 export async function middleware(req) {
   const res = NextResponse.next();
@@ -25,7 +25,7 @@ export async function middleware(req) {
   // If there's no session and the route is not public, redirect to landing
   if (!session && !isPublicRoute && !isStaticFile && !isApiRoute) {
     // Redirect to landing page
-    const redirectUrl = new URL('/landing', req.url);
+    const redirectUrl = new URL('/', req.url);
     return NextResponse.redirect(redirectUrl);
   }
   
