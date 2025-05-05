@@ -1,7 +1,7 @@
 import os
 import base64
+import requests
 from datetime import datetime
-from mailersend import emails
 from .logger import Logger
 from .database_service import DatabaseService
 import dotenv
@@ -12,17 +12,15 @@ class EmailService:
         self.logger = logger
         self.db_service = db_service
         
-        # MailerSend configuration from environment variables
-        self.mailersend_api_key = os.environ.get("MAILERSEND_API_KEY")
-        self.sender_email = os.environ.get("SENDER_EMAIL")
+        # Resend API configuration from environment variables
+        self.resend_api_key = os.environ.get("RESEND_API_KEY")
+        self.sender_email = os.environ.get("SENDER_EMAIL", "noreply@resend.dev")
         self.sender_name = os.environ.get("SENDER_NAME", "EduHelpify Team")
-        self.sender_domain = os.environ.get("test-eqvygm00x2zl0p7w.mlsender.net")
         
-        if not all([self.mailersend_api_key, self.sender_email]):
-            self.logger.warning("Email service not fully configured - missing credentials")
+        if not self.resend_api_key:
+            self.logger.warning("Email service not fully configured - missing Resend API key")
         else:
-            self.mailer = emails.NewEmail(self.mailersend_api_key)
-            self.logger.info("EmailService initialized successfully with MailerSend")
+            self.logger.info("EmailService initialized successfully with Resend API")
 
     def send_task_output(self, task_id):
         """Send the output file of a completed task to the user
@@ -50,43 +48,19 @@ class EmailService:
         # Create email message
         username = user_details.get("username", "User")
         email_body = f"""
-        Hello {username},
+        <p>Hello {username},</p>
         
-        Your document processing task has been completed successfully.
+        <p>Your document processing task has been completed successfully.</p>
         
-        The processed file(s) are attached to this email.
+        <p>The processed file(s) are attached to this email.</p>
         
-        Thank you for using our service!
+        <p>Thank you for using our service!</p>
         
-        Regards,
-        EduHelpify Team
+        <p>Regards,<br>
+        EduHelpify Team</p>
         """
         
-        # Initialize MailerSend mail body
-        mail_body = {}
-        
-        # Set sender info
-        mail_from = {
-            "name": self.sender_name,
-            "email": self.sender_email,
-            "domain": self.sender_domain if hasattr(self, 'sender_domain') else self.sender_email.split('@')[1]
-        }
-        # Set recipient info
-        recipients = [
-            {
-                "name": username,
-                "email": user_details["email"],
-            }
-        ]
-        
-        # Configure email
-        self.mailer.set_mail_from(mail_from, mail_body)
-        self.mailer.set_mail_to(recipients, mail_body)
-        self.mailer.set_subject("Your document processing task is complete", mail_body)
-        self.mailer.set_html_content(email_body, mail_body)
-        self.mailer.set_plaintext_content(email_body, mail_body)
-        
-        # Attach output files
+        # Prepare attachments
         files_attached = 0
         attachments = []
         
@@ -97,22 +71,10 @@ class EmailService:
                     file_content = file.read()
                     filename = os.path.basename(file_path)
                     
-                    # Detect file type
-                    file_type = 'application/octet-stream'  # Default
-                    if filename.endswith('.pdf'):
-                        file_type = 'application/pdf'
-                    elif filename.endswith('.json'):
-                        file_type = 'application/json'
-                    elif filename.endswith('.html'):
-                        file_type = 'text/html'
-                    elif filename.endswith('.txt'):
-                        file_type = 'text/plain'
-                    
-                    # Create attachment for MailerSend
+                    # Create attachment for Resend
                     attachment = {
                         "filename": filename,
-                        "content": base64.b64encode(file_content).decode('utf-8'),
-                        "disposition": "attachment"
+                        "content": base64.b64encode(file_content).decode('utf-8')
                     }
                     
                     attachments.append(attachment)
@@ -123,20 +85,31 @@ class EmailService:
         if files_attached == 0:
             self.logger.error(f"No attachable files found for task ID: {task_id}")
             return False
-            
-        # Add attachments to the email
-        mail_body["attachments"] = attachments
+        
+        # Prepare Resend API request
+        headers = {
+            "Authorization": f"Bearer {self.resend_api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        data = {
+            "from": f"{self.sender_name} <{self.sender_email}>",
+            "to": user_details["email"],
+            "subject": "Your document processing task is complete",
+            "html": email_body,
+            "attachments": attachments
+        }
             
         try:
-            # Send email via MailerSend
-            response = self.mailer.send(mail_body)
+            # Send email via Resend API
+            response = requests.post("https://api.resend.com/emails", headers=headers, json=data)
             
             # Check response status
-            if response and hasattr(response, 'status_code') and 200 <= response.status_code < 300:
+            if response.status_code >= 200 and response.status_code < 300:
                 self.logger.info(f"Email sent successfully to {user_details['email']} for task ID: {task_id}")
                 return True
             else:
-                self.logger.error(f"MailerSend API failed for task ID: {task_id}")
+                self.logger.error(f"Resend API failed for task ID: {task_id}. Status: {response.status_code}, Response: {response.text}")
                 return False
             
         except Exception as e:
