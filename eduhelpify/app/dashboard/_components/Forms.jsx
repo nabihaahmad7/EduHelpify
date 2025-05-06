@@ -20,7 +20,7 @@ export default function Form() {
   const [formValid, setFormValid] = useState(false);
   const [taskConfig, setTaskConfig] = useState(null);
 
-  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+  const MAX_FILE_SIZE = 30* 1024 * 1024; // 10MB
   // Check form validity whenever inputs change
   useEffect(() => {
     const isValid = email && 
@@ -77,15 +77,16 @@ export default function Form() {
         return;
       }
 
-      const validTypes = ['text/plain', 'application/pdf'];
-      const validExtensions = ['.txt', '.pdf'];
-      const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase();
+      const validTypes = ['text/plain', 'application/pdf', 'image/jpeg', 'image/jpg', 'image/png', 
+        'audio/mpeg', 'audio/wav', 'audio/mp3'];
+const validExtensions = ['.txt', '.pdf', '.jpeg', '.jpg', '.png', 
+             '.mp3', '.wav'];
+const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase();
 
-      if (!validTypes.includes(selectedFile.type) && !validExtensions.includes(fileExtension)) {
-        toast.error("Please upload a .txt or .pdf file");
-        return;
-      }
-
+if (!validTypes.includes(selectedFile.type) && !validExtensions.includes(fileExtension)) {
+toast.error("Please upload a supported file format (.txt, .pdf, .jpg, .jpeg, .png, .mp3)");
+return;
+}
       setFile(selectedFile);
       setFileName(selectedFile.name);
     }
@@ -198,14 +199,14 @@ export default function Form() {
                       {fileName || "Click to browse or drag & drop"}
                     </p>
                     <p className="text-xs mt-1" style={{ color: theme.colors.icon }}>
-                      Supported formats: PDF, TXT (Max 10MB)
+                      Supported formats: PDF, TXT, JPEG, JPG, PNG, MP3, WAV (Max 30MB)
                     </p>
                   </div>
                   <input
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    accept=".txt,.pdf"
+                    accept=".txt,.pdf,.jpeg,.jpg,.png,.mp3,.wav"
                     required
                   />
                 </label>

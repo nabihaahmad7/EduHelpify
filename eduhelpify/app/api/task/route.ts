@@ -62,6 +62,7 @@
             const { file: fileRecord, error: fileError } = await fileStoreService.saveFileMetadata({
               task_id: taskId,
               file_name: file.name,
+              file_type_id: 'c0a80101-0000-0000-0000-000000000021',
               file_size: file.size,
               stored_location: path,
               need_ocr: formData.get('need_ocr') === 'False',
