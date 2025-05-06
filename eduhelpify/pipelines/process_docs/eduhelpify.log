@@ -1,0 +1,6 @@
+2025-05-06 04:35:28,943 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 04:35:28,944 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 04:35:28,944 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 04:35:31,090 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 04:35:31,090 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 04:35:31,090 - AiServices - INFO - EmailService initialized successfully with Resend API

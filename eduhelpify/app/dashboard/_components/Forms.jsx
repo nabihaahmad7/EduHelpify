@@ -77,8 +77,18 @@ export default function Form() {
         return;
       }
 
-      const validTypes = ['text/plain', 'application/pdf'];
-      const validExtensions = ['.txt', '.pdf'];
+      const validTypes = [
+        'text/plain', 
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'image/png',
+        'image/jpeg',
+        'image/jpg',
+        'audio/mpeg',
+        'audio/wav',
+        'audio/mp3'
+      ];
+      const validExtensions = ['.txt', '.pdf', '.pptx', '.png', '.jpg', '.jpeg', '.mp3', '.wav'];
       const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase();
 
       if (!validTypes.includes(selectedFile.type) && !validExtensions.includes(fileExtension)) {
