@@ -1,13 +1,20 @@
+export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server';
 import { taskService } from '../service';
 import { fileStoreService } from '../../files/service';
 
+type RouteParams = {
+  params: {
+    taskId: string;
+  };
+};
+
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { taskId: string } }
+  request: Request,
+  {params}: { params: Promise<{ taskId: string }> }
 ) {
   try {
-    const taskId = params.taskId;
+    const taskId = (await params).taskId;
     
     // Get the task
     const { task, error } = await taskService.getTaskById(taskId);
@@ -45,11 +52,11 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { taskId: string } }
+  request: Request,
+  {params}: { params: Promise<{ taskId: string }> }
 ) {
   try {
-    const taskId = params.taskId;
+    const taskId = (await params).taskId;
     const updateData = await request.json();
     
     // Update the task
@@ -80,11 +87,11 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { taskId: string } }
+  request: Request,
+  {params}: { params: Promise<{ taskId: string }> }
 ) {
   try {
-    const taskId = params.taskId;
+    const taskId = (await params).taskId;
     
     // Get all files associated with this task
     const { files, error: filesError } = await fileStoreService.getFilesByTaskId(taskId);

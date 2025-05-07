@@ -1,7 +1,8 @@
+export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server';
 import { taskService } from './service';
 import { fileStoreService } from '../files/service';
-
+import { supabase } from '../../../lib/supabase';
 const TASK_PROCESSOR_URL=process.env.TASK_PROCESSOR_URL;
 export async function POST(request: NextRequest) {
   try {
@@ -108,6 +109,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -121,11 +123,21 @@ export async function GET(request: NextRequest) {
     }
     
     // Here you would get all tasks for a user
-    // This is a placeholder for the actual implementation
+    const { data: tasks, error } = await supabase
+      .from('task')
+      .select('*')
+      .eq('user_id', userId);
+      
+    if (error) {
+      return NextResponse.json(
+        { error: 'Failed to retrieve tasks', details: error },
+        { status: 400 }
+      );
+    }
     
     return NextResponse.json({
       success: true,
-      tasks: [], // Replace with actual data
+      tasks: tasks || [],
     });
     
   } catch (error) {
