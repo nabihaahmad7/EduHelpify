@@ -20,7 +20,7 @@ export default function Form() {
   const [formValid, setFormValid] = useState(false);
   const [taskConfig, setTaskConfig] = useState(null);
 
-  const MAX_FILE_SIZE = 10* 1024 * 1024; // 10MB
+  const MAX_FILE_SIZE = 30* 1024 * 1024; // 10MB
   // Check form validity whenever inputs change
   useEffect(() => {
     const isValid = email && 

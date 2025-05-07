@@ -1,0 +1,910 @@
+2025-05-06 09:36:53,326 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 09:36:53,326 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 09:36:53,326 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 09:36:55,662 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 09:36:55,668 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 09:36:55,668 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 09:40:07,059 - AiServices - INFO - Fetching queued tasks
+2025-05-06 09:40:07,763 - AiServices - INFO - Found 7 queued tasks
+2025-05-06 09:40:08,262 - AiServices - INFO - Processing task: eb09f429-e460-4037-b328-92e60f3ef408
+2025-05-06 09:40:09,121 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 09:40:09,121 - AiServices - INFO - Output content type: txt
+2025-05-06 09:40:11,077 - AiServices - INFO - Input files: []
+2025-05-06 09:40:11,077 - AiServices - ERROR - No input files found for task: eb09f429-e460-4037-b328-92e60f3ef408
+2025-05-06 09:40:11,883 - AiServices - INFO - Processing task: b07453d1-cb28-4ab9-8963-97c02e33a9fd
+2025-05-06 09:40:12,891 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 09:40:12,891 - AiServices - INFO - Output content type: txt
+2025-05-06 09:40:14,982 - AiServices - INFO - Input files: []
+2025-05-06 09:40:14,983 - AiServices - ERROR - No input files found for task: b07453d1-cb28-4ab9-8963-97c02e33a9fd
+2025-05-06 09:40:16,198 - AiServices - INFO - Processing task: 045b0e68-e8b8-423f-b653-9e3537df7401
+2025-05-06 09:40:17,271 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-06 09:40:17,271 - AiServices - INFO - Output content type: docx
+2025-05-06 09:40:23,618 - AiServices - ERROR - Error in process_task_by_id: The read operation timed out
+2025-05-06 09:40:30,672 - AiServices - INFO - Processing task: dce2bc1b-b663-4df3-9241-8fba19dc73cb
+2025-05-06 09:40:31,923 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-06 09:40:31,925 - AiServices - INFO - Output content type: docx
+2025-05-06 09:40:33,456 - AiServices - INFO - Input files: []
+2025-05-06 09:40:33,456 - AiServices - ERROR - No input files found for task: dce2bc1b-b663-4df3-9241-8fba19dc73cb
+2025-05-06 09:40:34,305 - AiServices - INFO - Processing task: daf41bd2-328b-4caa-acc3-6427aec5d11f
+2025-05-06 09:40:35,169 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-06 09:40:35,169 - AiServices - INFO - Output content type: docx
+2025-05-06 09:40:36,969 - AiServices - INFO - Input files: [{'id': 'a4fb1e44-1861-4db5-bc00-c7a301f3c5ec', 'task_id': 'daf41bd2-328b-4caa-acc3-6427aec5d11f', 'file_name': 'Farwa-Afzal-resume (2).pdf', 'file_type_id': None, 'need_ocr': False, 'stored_location': "C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\Farwa-Afzal-resume (2).pdf", 'file_size': 40091, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-05T23:07:42.281+00:00', 'updated_at': '2025-05-05T23:07:42.281+00:00'}]
+2025-05-06 09:40:36,969 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 09:40:36,969 - AiServices - ERROR - No valid input file paths found for task: daf41bd2-328b-4caa-acc3-6427aec5d11f
+2025-05-06 09:40:37,869 - AiServices - INFO - Processing task: 0c60978c-40a9-4fab-b695-8a321e174fcc
+2025-05-06 09:40:38,921 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000001', 'name': 'PDF', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.pdf']}] count=None
+2025-05-06 09:40:38,921 - AiServices - INFO - Output content type: pdf
+2025-05-06 09:40:40,802 - AiServices - INFO - Input files: [{'id': '90ce20d2-5f77-404b-bdb2-f1d86d1d551a', 'task_id': '0c60978c-40a9-4fab-b695-8a321e174fcc', 'file_name': 'PakRailTicket.pdf', 'file_type_id': None, 'need_ocr': False, 'stored_location': "C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\PakRailTicket.pdf", 'file_size': 416571, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-05T23:16:09.989+00:00', 'updated_at': '2025-05-05T23:16:09.989+00:00'}]
+2025-05-06 09:40:40,811 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 09:40:40,811 - AiServices - ERROR - No valid input file paths found for task: 0c60978c-40a9-4fab-b695-8a321e174fcc
+2025-05-06 09:40:41,755 - AiServices - INFO - Processing task: b19fe016-8cdb-48d4-97d7-b9bf2ffb08aa
+2025-05-06 09:40:42,904 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 09:40:42,904 - AiServices - INFO - Output content type: txt
+2025-05-06 09:40:45,088 - AiServices - INFO - Input files: [{'id': '54dd6df0-8d1c-40ed-8cad-0eb25b3a8b67', 'task_id': 'b19fe016-8cdb-48d4-97d7-b9bf2ffb08aa', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': None, 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T04:40:06.625+00:00', 'updated_at': '2025-05-06T04:40:06.625+00:00'}]
+2025-05-06 09:40:45,088 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 09:40:45,088 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3']
+2025-05-06 09:40:45,095 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 09:40:45,095 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 09:43:47,142 - AiServices - ERROR - Upload failed: 503 failed to connect to all addresses; last error: UNAVAILABLE: ipv4:142.250.181.170:443: ConnectEx: No route to host (A socket operation was attempted to an unreachable host.
+ -- 10065)
+2025-05-06 09:43:47,204 - AiServices - ERROR - Error processing files: 503 failed to connect to all addresses; last error: UNAVAILABLE: ipv4:142.250.181.170:443: ConnectEx: No route to host (A socket operation was attempted to an unreachable host.
+ -- 10065)
+2025-05-06 09:43:47,210 - AiServices - ERROR - Error processing task b19fe016-8cdb-48d4-97d7-b9bf2ffb08aa: 503 failed to connect to all addresses; last error: UNAVAILABLE: ipv4:142.250.181.170:443: ConnectEx: No route to host (A socket operation was attempted to an unreachable host.
+ -- 10065)
+2025-05-06 09:59:56,784 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 09:59:56,784 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 09:59:56,784 - AiServices - WARNING - Email service not fully configured - missing credentials
+2025-05-06 09:59:59,952 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 09:59:59,952 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 09:59:59,952 - AiServices - WARNING - Email service not fully configured - missing credentials
+2025-05-06 10:07:29,467 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:07:30,169 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:07:30,564 - AiServices - INFO - Processing task: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:07:31,392 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 10:07:31,392 - AiServices - INFO - Output content type: txt
+2025-05-06 10:07:33,339 - AiServices - INFO - Input files: [{'id': '5a3ad909-c84f-4f10-91d7-444241480071', 'task_id': 'f972ba89-a180-48f1-b8ad-a53defc73d3f', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:07:28.872+00:00', 'updated_at': '2025-05-06T05:07:28.872+00:00'}]
+2025-05-06 10:07:33,339 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:07:33,339 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3']
+2025-05-06 10:07:33,343 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:07:33,343 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:08:53,218 - AiServices - INFO - Uploaded file '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3' as: https://generativelanguage.googleapis.com/v1beta/files/e8drh5gbeo09 (type: audio/mpeg)
+2025-05-06 10:08:53,218 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:09:02,731 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:09:02,731 - AiServices - INFO - Okay, here are the lecture notes from the provided transcription:
+
+**Topic: Breadth-First Search (BFS) and Depth-First Search (DFS)**
+
+**Introduction:**
+*   BFS and DFS are graph traversal methods.
+*   Understanding the difference is key.
+
+**Key Terms:**
+*   **Visiting a Vertex:** Going to a specific vertex.
+*   **Exploration of a Vertex:** Visiting all adjacent vertices from the current vertex.
+
+**Breadth-First Search (BFS):**
+*   Explore all the neighbour nodes at the present depth prior to moving on to the nodes at the next depth level.
+*   Start from a chosen vertex.
+*   Visit the vertex.
+*   Explore the vertex: visit all adjacent vertices.
+*   Select the next vertex in order of visit for exploration, and repeat.
+*   Continue until all vertices are visited and explored.
+*   Employs a queue data structure.
+*   BFS is similar to level-order traversal in a binary tree.
+
+**Depth-First Search (DFS):**
+*   Explore as far as possible along each branch before backtracking.
+*   Start from a chosen vertex.
+*   Visit the vertex.
+*   Explore the vertex: start with one adjacent vertex.
+*   Move to the next level down, explore the new vertex.
+*   Suspend the exploration and backtrack, until no more vertices can be visited.
+*   Continues until all nodes are visited.
+*   DFS is similar to pre-order traversal.
+*   Employs a stack data structure.
+
+**Important Considerations for BFS:**
+1.  **Starting Vertex:** BFS can start from any vertex.
+2.  **Order of Visiting Adjacent Vertices:** Order of visiting adjacent vertices can be different, leading to different valid BFS traversals.
+3.  **Rule:** When exploring a vertex, visit all its adjacent vertices before moving to the next vertex for exploration.
+4.  **Vertex Selection:** Select the next vertex for exploration from the queue.
+
+**Additional BFS concepts:**
+*   **BFS Spanning Tree:** The tree formed by the BFS traversal.
+*   **Cross Edges:** Edges in the graph that are not part of the spanning tree.
+2025-05-06 10:09:02,731 - AiServices - INFO - Saving response as txt file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_f972ba89-a180-48f1-b8ad-a53defc73d3f.txt
+2025-05-06 10:09:02,731 - AiServices - INFO - Response saved to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_f972ba89-a180-48f1-b8ad-a53defc73d3f.txt
+2025-05-06 10:09:03,862 - AiServices - INFO - Preparing to send output for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:09:03,865 - AiServices - INFO - Fetching user details for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:09:05,193 - AiServices - INFO - Found user details for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:09:05,845 - AiServices - ERROR - Error processing task f972ba89-a180-48f1-b8ad-a53defc73d3f: 'EmailService' object has no attribute 'mailer'
+2025-05-06 10:13:46,816 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:13:46,823 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:13:46,823 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:13:49,422 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:13:49,422 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:13:49,422 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:14:12,816 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:14:13,926 - AiServices - INFO - No queued tasks found
+2025-05-06 10:15:58,097 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:15:59,248 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:15:59,622 - AiServices - INFO - Processing task: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:16:00,433 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 10:16:00,433 - AiServices - INFO - Output content type: txt
+2025-05-06 10:16:02,104 - AiServices - INFO - Input files: [{'id': '5a3ad909-c84f-4f10-91d7-444241480071', 'task_id': 'f972ba89-a180-48f1-b8ad-a53defc73d3f', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:07:28.872+00:00', 'updated_at': '2025-05-06T05:07:28.872+00:00'}]
+2025-05-06 10:16:02,104 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:16:02,113 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3']
+2025-05-06 10:16:02,113 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:16:02,113 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:16:45,709 - AiServices - INFO - Uploaded file '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3' as: https://generativelanguage.googleapis.com/v1beta/files/rth5xmdkp7hd (type: audio/mpeg)
+2025-05-06 10:16:45,709 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:16:56,299 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:16:56,299 - AiServices - INFO - Okay, here are the lecture notes based on the provided transcript:
+
+**Title:** Breadth-First Search (BFS) and Depth-First Search (DFS)
+**Level:** Intermediate
+
+**Introduction:**
+
+*   BFS and DFS are fundamental graph traversal algorithms.
+*   Graph traversal involves visiting and exploring all vertices (nodes) in a graph.
+
+**Key Concepts:**
+
+1.  **Visiting a Vertex:**  Means going to a particular vertex/node.
+2.  **Exploration of Vertex:**
+    *   Visiting all adjacent (neighboring) vertices connected to a given vertex.
+
+**Breadth-First Search (BFS):**
+
+*   Explores the graph level by level.
+*   Uses a Queue data structure.
+
+**BFS Algorithm Steps:**
+
+1.  **Initialization:**
+    *   Select a starting vertex.
+    *   Mark it as visited.
+    *   Add the starting vertex to a queue.
+2.  **Repeating Steps:**
+    *   While the queue is not empty:
+        *   Dequeue a vertex from the queue.
+        *   Explore the dequeued vertex:
+            *   Visit all unvisited adjacent vertices.
+            *   Mark them as visited.
+            *   Enqueue them into the queue.
+*   The order in which adjacent nodes are visited does not matter.
+*   All adjacent nodes of a node must be visited before exploring further.
+*   The next node to be explored must be selected from a Q.
+
+**Depth-First Search (DFS):**
+
+*   Explores the graph by going as deep as possible along each branch before backtracking.
+*   Uses a Stack data structure.
+
+**DFS Algorithm Steps:**
+
+1.  **Initialization:**
+    *   Select a starting vertex.
+    *   Mark it as visited.
+    *   Push the starting vertex onto a stack.
+2.  **Repeating Steps:**
+    *   While the stack is not empty:
+        *   Pop a vertex from the stack.
+        *   If the vertex has not been visited:
+            *   Mark the vertex as visited.
+        *   Explore the popped vertex:
+            *   Choose one unvisited adjacent vertex.
+            *   Visit it.
+            *   Push the current vertex onto the stack (to backtrack later).
+            *   Push the newly visited vertex onto the stack.
+            *   Repeat exploration from the new vertex.
+        *   If the vertex has no unvisited adjacent vertices or has already been visited, backtrack by continuing to pop vertices from the stack.
+*   The node should be suspended on the stack.
+*   The search will go deep and deep.
+
+**Key Differences:**
+
+*   **BFS:** Uses a queue, explores breadth-wise.
+*   **DFS:** Uses a stack, explores depth-wise.
+
+**Example with Binary Trees:**
+
+*   **BFS** is similar to a level-order traversal of a binary tree.
+*   **DFS** is similar to a pre-order traversal of a binary tree.
+
+**BFS Spanning Tree:**
+
+*   The resulting tree from a BFS traversal is called a BFS spanning tree.
+*   Edges not in the spanning tree are called cross edges.
+
+**Important Considerations:**
+
+*   **Vertex Selection:** Start BFS/DFS from any vertex.
+*   **Order of Exploration:**  Visit adjacent vertices in any order.
+*   **Rule:**  When selecting a vertex for exploration, visit all of its adjacent vertices.
+*   **Exploration Source:** For BFS, select the next vertex for exploration from the queue.
+
+**Additional Notes:**
+
+*   Multiple valid BFS/DFS traversal orders exist for a given graph.
+*   Stack and exploration should be completely done.
+2025-05-06 10:16:56,304 - AiServices - INFO - Saving response as txt file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_f972ba89-a180-48f1-b8ad-a53defc73d3f.txt
+2025-05-06 10:16:56,304 - AiServices - INFO - Response saved to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_f972ba89-a180-48f1-b8ad-a53defc73d3f.txt
+2025-05-06 10:16:57,664 - AiServices - INFO - Preparing to send output for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:16:57,664 - AiServices - INFO - Fetching user details for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:16:58,699 - AiServices - INFO - Found user details for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:17:01,352 - AiServices - INFO - Email sent successfully to f21bb045@ibitpu.edu.pk for task ID: f972ba89-a180-48f1-b8ad-a53defc73d3f
+2025-05-06 10:17:01,757 - AiServices - INFO - Task f972ba89-a180-48f1-b8ad-a53defc73d3f completed successfully
+2025-05-06 10:20:44,094 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:20:44,893 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:20:45,426 - AiServices - INFO - Processing task: 8b5b0eac-0acb-4db9-855b-e9f96f05d418
+2025-05-06 10:20:46,319 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-06 10:20:46,319 - AiServices - INFO - Output content type: docx
+2025-05-06 10:20:48,166 - AiServices - INFO - Input files: [{'id': '8319e527-075b-4c32-86fc-3f7d8d02e440', 'task_id': '8b5b0eac-0acb-4db9-855b-e9f96f05d418', 'file_name': 'OOAD_OBSERVER_DP.pptx', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\OOAD_OBSERVER_DP.pptx', 'file_size': 1081835, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:20:43.468+00:00', 'updated_at': '2025-05-06T05:20:43.468+00:00'}]
+2025-05-06 10:20:48,166 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:20:48,166 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\OOAD_OBSERVER_DP.pptx']
+2025-05-06 10:20:48,166 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:20:48,166 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:20:55,618 - AiServices - INFO - Uploaded file 'OOAD_OBSERVER_DP.pptx' as: https://generativelanguage.googleapis.com/v1beta/files/u5lcjyfd5pxd (type: application/vnd.openxmlformats-officedocument.presentationml.presentation)
+2025-05-06 10:20:55,618 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:20:56,273 - AiServices - ERROR - Error processing files: 400 Unable to submit request because it has a mimeType parameter with value application/vnd.openxmlformats-officedocument.presentationml.presentation, which is not supported. Update the mimeType and try again. Learn more: https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/gemini
+2025-05-06 10:20:56,273 - AiServices - ERROR - Error processing task 8b5b0eac-0acb-4db9-855b-e9f96f05d418: 400 Unable to submit request because it has a mimeType parameter with value application/vnd.openxmlformats-officedocument.presentationml.presentation, which is not supported. Update the mimeType and try again. Learn more: https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/gemini
+2025-05-06 10:26:47,629 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:26:47,629 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:26:47,629 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:27:41,483 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:27:41,483 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:27:41,483 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:27:44,071 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:27:44,071 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:27:44,071 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:27:45,363 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:27:46,074 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:27:46,463 - AiServices - INFO - Processing task: 8b5b0eac-0acb-4db9-855b-e9f96f05d418
+2025-05-06 10:27:47,236 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-06 10:27:47,236 - AiServices - INFO - Output content type: docx
+2025-05-06 10:27:49,050 - AiServices - INFO - Input files: [{'id': '8319e527-075b-4c32-86fc-3f7d8d02e440', 'task_id': '8b5b0eac-0acb-4db9-855b-e9f96f05d418', 'file_name': 'OOAD_OBSERVER_DP.pptx', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\OOAD_OBSERVER_DP.pptx', 'file_size': 1081835, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:20:43.468+00:00', 'updated_at': '2025-05-06T05:20:43.468+00:00'}]
+2025-05-06 10:27:49,050 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:27:49,050 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\OOAD_OBSERVER_DP.pptx']
+2025-05-06 10:27:49,050 - AiServices - INFO - Detected Office file format: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:27:49,057 - AiServices - INFO - Switching to gemini-2.0-pro for Office document processing
+2025-05-06 10:27:49,057 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:27:49,057 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:27:49,057 - AiServices - INFO - Detected PPTX file: D:\Nabiha\projects\FYP\eduhelpify\docs\input\OOAD_OBSERVER_DP.pptx
+2025-05-06 10:28:05,160 - AiServices - INFO - Uploaded file 'OOAD_OBSERVER_DP.pptx' as: https://generativelanguage.googleapis.com/v1beta/files/qaj279malzid (type: application/octet-stream)
+2025-05-06 10:28:05,160 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:28:06,643 - AiServices - ERROR - Error processing files: 404 models/gemini-2.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-05-06 10:28:06,656 - AiServices - ERROR - Error processing task 8b5b0eac-0acb-4db9-855b-e9f96f05d418: 404 models/gemini-2.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-05-06 10:28:48,160 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:28:48,160 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:28:48,162 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:28:53,157 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:28:53,157 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:28:53,157 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:35:26,166 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:35:26,953 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:35:27,491 - AiServices - INFO - Processing task: dcd35721-6710-47b6-aaf5-e40915167fbe
+2025-05-06 10:35:28,501 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000011', 'name': 'PPTX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.pptx']}] count=None
+2025-05-06 10:35:28,501 - AiServices - INFO - Output content type: pptx
+2025-05-06 10:35:30,446 - AiServices - INFO - Input files: [{'id': '331eac25-dedd-4148-9335-a1204e953e2c', 'task_id': 'dcd35721-6710-47b6-aaf5-e40915167fbe', 'file_name': 'Observer Design Pattern.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf', 'file_size': 160990, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:35:25.634+00:00', 'updated_at': '2025-05-06T05:35:25.634+00:00'}]
+2025-05-06 10:35:30,446 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:35:30,446 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf']
+2025-05-06 10:35:30,446 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:35:30,446 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:35:35,796 - AiServices - INFO - Uploaded file 'Observer Design Pattern.pdf' as: https://generativelanguage.googleapis.com/v1beta/files/8mi79684ni8k (type: application/pdf)
+2025-05-06 10:35:35,796 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:35:47,443 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:35:47,623 - AiServices - INFO - Saving response as pptx file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_dcd35721-6710-47b6-aaf5-e40915167fbe.pptx
+2025-05-06 10:35:47,949 - AiServices - ERROR - Error saving pptx file: 'list' object has no attribute 'get'
+2025-05-06 10:35:47,949 - AiServices - ERROR - Error processing files: 'list' object has no attribute 'get'
+2025-05-06 10:35:47,949 - AiServices - ERROR - Error processing task dcd35721-6710-47b6-aaf5-e40915167fbe: 'list' object has no attribute 'get'
+2025-05-06 10:40:03,915 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:40:03,915 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:40:03,915 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:40:30,928 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:40:33,570 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:40:34,171 - AiServices - INFO - Processing task: dcd35721-6710-47b6-aaf5-e40915167fbe
+2025-05-06 10:40:35,198 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000011', 'name': 'PPTX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.pptx']}] count=None
+2025-05-06 10:40:35,198 - AiServices - INFO - Output content type: pptx
+2025-05-06 10:40:37,244 - AiServices - INFO - Input files: [{'id': '331eac25-dedd-4148-9335-a1204e953e2c', 'task_id': 'dcd35721-6710-47b6-aaf5-e40915167fbe', 'file_name': 'Observer Design Pattern.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf', 'file_size': 160990, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:35:25.634+00:00', 'updated_at': '2025-05-06T05:35:25.634+00:00'}]
+2025-05-06 10:40:37,246 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:40:37,246 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf']
+2025-05-06 10:40:37,246 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:40:37,246 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:40:43,579 - AiServices - INFO - Uploaded file 'Observer Design Pattern.pdf' as: https://generativelanguage.googleapis.com/v1beta/files/5ed21125yy4u (type: application/pdf)
+2025-05-06 10:40:43,579 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:40:54,847 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:40:54,874 - AiServices - INFO - Saving response as pptx file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_dcd35721-6710-47b6-aaf5-e40915167fbe.pptx
+2025-05-06 10:40:55,300 - AiServices - ERROR - Error saving pptx file: local variable 'prs' referenced before assignment
+2025-05-06 10:40:55,300 - AiServices - ERROR - Error processing files: local variable 'prs' referenced before assignment
+2025-05-06 10:40:55,300 - AiServices - ERROR - Error processing task dcd35721-6710-47b6-aaf5-e40915167fbe: local variable 'prs' referenced before assignment
+2025-05-06 10:42:09,862 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:42:09,863 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:42:09,863 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:42:26,675 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:42:27,591 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:42:28,126 - AiServices - INFO - Processing task: dcd35721-6710-47b6-aaf5-e40915167fbe
+2025-05-06 10:42:29,156 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000011', 'name': 'PPTX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.pptx']}] count=None
+2025-05-06 10:42:29,157 - AiServices - INFO - Output content type: pptx
+2025-05-06 10:42:31,172 - AiServices - INFO - Input files: [{'id': '331eac25-dedd-4148-9335-a1204e953e2c', 'task_id': 'dcd35721-6710-47b6-aaf5-e40915167fbe', 'file_name': 'Observer Design Pattern.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf', 'file_size': 160990, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:35:25.634+00:00', 'updated_at': '2025-05-06T05:35:25.634+00:00'}]
+2025-05-06 10:42:31,172 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:42:31,172 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\Observer Design Pattern.pdf']
+2025-05-06 10:42:31,172 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:42:31,172 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\Observer Design Pattern.pdf
+2025-05-06 10:42:36,415 - AiServices - INFO - Uploaded file 'Observer Design Pattern.pdf' as: https://generativelanguage.googleapis.com/v1beta/files/kuxvml3f67nj (type: application/pdf)
+2025-05-06 10:42:36,424 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:42:46,865 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:42:46,901 - AiServices - INFO - Saving response as pptx file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_dcd35721-6710-47b6-aaf5-e40915167fbe.pptx
+2025-05-06 10:42:47,383 - AiServices - ERROR - Error saving pptx file: 'NoneType' object has no attribute 'split'
+2025-05-06 10:42:47,392 - AiServices - ERROR - Error processing files: 'NoneType' object has no attribute 'split'
+2025-05-06 10:42:47,392 - AiServices - ERROR - Error processing task dcd35721-6710-47b6-aaf5-e40915167fbe: 'NoneType' object has no attribute 'split'
+2025-05-06 10:51:52,737 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:51:52,737 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:51:52,737 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:51:55,099 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-06 10:51:55,099 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-06 10:51:55,115 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-06 10:54:43,767 - AiServices - INFO - Fetching queued tasks
+2025-05-06 10:54:44,669 - AiServices - INFO - Found 1 queued tasks
+2025-05-06 10:54:45,817 - AiServices - INFO - Processing task: c69f8754-2cf8-4fff-a48c-02e6731951d8
+2025-05-06 10:54:47,557 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-06 10:54:47,557 - AiServices - INFO - Output content type: txt
+2025-05-06 10:54:49,659 - AiServices - INFO - Input files: [{'id': '597bfd72-3aee-454f-aee9-b98010841d4a', 'task_id': 'c69f8754-2cf8-4fff-a48c-02e6731951d8', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-06T05:54:42.801+00:00', 'updated_at': '2025-05-06T05:54:42.801+00:00'}]
+2025-05-06 10:54:49,659 - AiServices - INFO - Input directory: D:\Nabiha\projects\FYP\eduhelpify\docs\input
+2025-05-06 10:54:49,659 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3']
+2025-05-06 10:54:49,659 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:54:49,659 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-06 10:56:23,627 - AiServices - INFO - Uploaded file '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3' as: https://generativelanguage.googleapis.com/v1beta/files/9x1iu39r4cju (type: audio/mpeg)
+2025-05-06 10:56:23,627 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-06 10:56:34,471 - AiServices - INFO - Received response from Gemini
+2025-05-06 10:56:34,471 - AiServices - INFO - ```json
+{
+  "structure": {
+    "title": "Breadth-First Search (BFS) vs. Depth-First Search (DFS)",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "content": "BFS and DFS are graph traversal methods. This video explains the difference with examples."
+      },
+      {
+        "heading": "Definitions",
+        "content": [
+          "Visiting a Vertex: Going to a particular vertex.",
+          "Exploration of Vertex: Visiting all its adjacent vertices."
+        ]
+      },
+      {
+        "heading": "Breadth-First Search (BFS)",
+        "content": [
+          "Start from a vertex and explore its neighbors first.",
+          "Example: Starting from vertex 1, visit 5, 4, and 2. Then explore 2, visiting 7, 6, and 3."
+        ]
+      },
+      {
+        "heading": "Depth-First Search (DFS)",
+        "content": [
+          "Start from a vertex and go as far as possible along each branch before backtracking.",
+          "Example: Starting from vertex 1, go to 2. Then explore 2, going to 3. Since 3 has no connections, go back to 2 and continue exploring."
+        ]
+      },
+      {
+        "heading": "Comparison",
+        "content": [
+          "BFS explores vertices level by level.",
+          "DFS explores as deeply as possible before backtracking."
+        ]
+      },
+      {
+        "heading": "Practical Example (Binary Tree)",
+        "content": [
+          "BFS is like level order traversal (1, 2, 3, 4, 5, 6, 7).",
+          "DFS is like pre-order traversal."
+        ]
+      },
+       {
+        "heading": "Implementation of BFS",
+        "content": [
+          "Use a queue data structure.",
+          "Initial step: Start exploration from any one of the vertex. For Example, vertex one",
+          "Repeating step: Take out a vertex from queue and start exploring it."
+        ]
+      },
+      {
+        "heading": "Conclusion",
+        "content": [
+          "Valid BFS searches must visit all adjacent vertices for exploration",
+           "Select the next vertex from the queue only",
+          "Difference in traversal results."
+        ]
+      }
+    ]
+  },
+  "output_ready": true,
+  "difficulty_level": "intermediate",
+  "content_length": "short"
+}
+```
+2025-05-06 10:56:34,471 - AiServices - INFO - Saving response as txt file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_c69f8754-2cf8-4fff-a48c-02e6731951d8.txt
+2025-05-06 10:56:34,471 - AiServices - INFO - Response saved to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_c69f8754-2cf8-4fff-a48c-02e6731951d8.txt
+2025-05-06 10:56:36,402 - AiServices - INFO - Preparing to send output for task ID: c69f8754-2cf8-4fff-a48c-02e6731951d8
+2025-05-06 10:56:36,402 - AiServices - INFO - Fetching user details for task ID: c69f8754-2cf8-4fff-a48c-02e6731951d8
+2025-05-06 10:56:38,348 - AiServices - INFO - Found user details for task ID: c69f8754-2cf8-4fff-a48c-02e6731951d8
+2025-05-06 10:56:40,104 - AiServices - INFO - Email sent successfully to f21bb045@ibitpu.edu.pk for task ID: c69f8754-2cf8-4fff-a48c-02e6731951d8
+2025-05-06 10:56:40,677 - AiServices - INFO - Task c69f8754-2cf8-4fff-a48c-02e6731951d8 completed successfully
+2025-05-08 01:43:58,801 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:43:58,801 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:44:00,683 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:44:00,683 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:44:13,277 - AiServices - INFO - Fetching queued tasks
+2025-05-08 01:44:14,563 - AiServices - INFO - Found 7 queued tasks
+2025-05-08 01:44:14,566 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:14,566 - AiServices - INFO - Initialized new AI service instance for task: b071e4e8-0d6d-40c4-9919-c8c2162679b5
+2025-05-08 01:44:14,974 - AiServices - INFO - Processing task: b071e4e8-0d6d-40c4-9919-c8c2162679b5
+2025-05-08 01:44:15,890 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000001', 'name': 'PDF', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.pdf']}] count=None
+2025-05-08 01:44:15,891 - AiServices - INFO - Output content type: pdf
+2025-05-08 01:44:17,895 - AiServices - INFO - Input files: [{'id': '1367fc77-e034-41b1-8b04-57a9ad1af2a5', 'task_id': 'b071e4e8-0d6d-40c4-9919-c8c2162679b5', 'file_name': 'Abdullah Afzal Mern Stack.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': "C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\Abdullah Afzal Mern Stack.pdf", 'file_size': 56695, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-07T12:59:57.568+00:00', 'updated_at': '2025-05-07T12:59:57.568+00:00'}]
+2025-05-08 01:44:17,898 - AiServices - INFO - File paths: ["C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\Abdullah Afzal Mern Stack.pdf"]
+2025-05-08 01:44:17,899 - AiServices - INFO - UPLOADING: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:17,900 - AiServices - INFO - Started uploading: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:17,901 - AiServices - ERROR - File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:17,901 - AiServices - ERROR - Error processing files: File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:17,902 - AiServices - ERROR - Error processing task b071e4e8-0d6d-40c4-9919-c8c2162679b5: File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:18,113 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:18,114 - AiServices - INFO - Initialized new AI service instance for task: 91b5e777-005d-4c52-b758-af4b86c0a5b7
+2025-05-08 01:44:18,512 - AiServices - INFO - Processing task: 91b5e777-005d-4c52-b758-af4b86c0a5b7
+2025-05-08 01:44:19,283 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000002', 'name': 'DOCX', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.docx', '.doc']}] count=None
+2025-05-08 01:44:19,283 - AiServices - INFO - Output content type: docx
+2025-05-08 01:44:20,479 - AiServices - INFO - Input files: [{'id': '010c40a0-decc-4f5d-91ee-7d55e9654c7f', 'task_id': '91b5e777-005d-4c52-b758-af4b86c0a5b7', 'file_name': 'Abdullah Afzal Mern Stack.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': "C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\Abdullah Afzal Mern Stack.pdf", 'file_size': 56695, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-07T13:26:37.495+00:00', 'updated_at': '2025-05-07T13:26:37.495+00:00'}]
+2025-05-08 01:44:20,481 - AiServices - INFO - File paths: ["C:\\Users\\Computer's World\\Desktop\\FYP\\EduHelpify\\eduhelpify\\docs\\input\\Abdullah Afzal Mern Stack.pdf"]
+2025-05-08 01:44:20,482 - AiServices - INFO - UPLOADING: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:20,483 - AiServices - INFO - Started uploading: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:20,484 - AiServices - ERROR - File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:20,485 - AiServices - ERROR - Error processing files: File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:20,486 - AiServices - ERROR - Error processing task 91b5e777-005d-4c52-b758-af4b86c0a5b7: File not found at path: C:\Users\Computer's World\Desktop\FYP\EduHelpify\eduhelpify\docs\input\Abdullah Afzal Mern Stack.pdf
+2025-05-08 01:44:20,854 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:20,855 - AiServices - INFO - Initialized new AI service instance for task: 066e751b-04db-479d-a0fd-5ed4e2f2bb93
+2025-05-08 01:44:21,071 - AiServices - INFO - Processing task: 066e751b-04db-479d-a0fd-5ed4e2f2bb93
+2025-05-08 01:44:21,648 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:44:21,648 - AiServices - INFO - Output content type: txt
+2025-05-08 01:44:22,670 - AiServices - INFO - Input files: []
+2025-05-08 01:44:22,670 - AiServices - ERROR - No input files found for task: 066e751b-04db-479d-a0fd-5ed4e2f2bb93
+2025-05-08 01:44:22,907 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:22,907 - AiServices - INFO - Initialized new AI service instance for task: 85f54f54-3ca5-4019-9dda-5201e346e624
+2025-05-08 01:44:23,108 - AiServices - INFO - Processing task: 85f54f54-3ca5-4019-9dda-5201e346e624
+2025-05-08 01:44:23,688 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:44:23,688 - AiServices - INFO - Output content type: txt
+2025-05-08 01:44:24,730 - AiServices - INFO - Input files: []
+2025-05-08 01:44:24,730 - AiServices - ERROR - No input files found for task: 85f54f54-3ca5-4019-9dda-5201e346e624
+2025-05-08 01:44:24,941 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:24,941 - AiServices - INFO - Initialized new AI service instance for task: 0346c36f-d1b3-433e-85da-64db618b85d7
+2025-05-08 01:44:25,154 - AiServices - INFO - Processing task: 0346c36f-d1b3-433e-85da-64db618b85d7
+2025-05-08 01:44:25,884 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:44:25,884 - AiServices - INFO - Output content type: txt
+2025-05-08 01:44:26,760 - AiServices - INFO - Input files: []
+2025-05-08 01:44:26,760 - AiServices - ERROR - No input files found for task: 0346c36f-d1b3-433e-85da-64db618b85d7
+2025-05-08 01:44:26,958 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:26,958 - AiServices - INFO - Initialized new AI service instance for task: d12672e6-091f-4554-9c92-de4d38619c4e
+2025-05-08 01:44:27,174 - AiServices - INFO - Processing task: d12672e6-091f-4554-9c92-de4d38619c4e
+2025-05-08 01:44:27,761 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:44:27,762 - AiServices - INFO - Output content type: txt
+2025-05-08 01:44:28,792 - AiServices - INFO - Input files: []
+2025-05-08 01:44:28,792 - AiServices - ERROR - No input files found for task: d12672e6-091f-4554-9c92-de4d38619c4e
+2025-05-08 01:44:29,007 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:44:29,007 - AiServices - INFO - Initialized new AI service instance for task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:44:29,221 - AiServices - INFO - Processing task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:44:29,620 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:44:29,620 - AiServices - INFO - Output content type: txt
+2025-05-08 01:44:30,476 - AiServices - INFO - Input files: [{'id': '692db533-a59b-46d7-9c91-882c024477e8', 'task_id': 'db8bfbe9-4af9-4ec1-89fe-1eaafed4e702', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-07T20:29:14.549+00:00', 'updated_at': '2025-05-07T20:29:14.549+00:00'}]
+2025-05-08 01:44:31,510 - AiServices - ERROR - Error downloading file https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3: 400 Client Error: Bad Request for url: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:44:31,510 - AiServices - ERROR - Error downloading file 5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3: 400 Client Error: Bad Request for url: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:44:31,526 - AiServices - ERROR - No valid input file paths found for task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:48:07,771 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:48:07,771 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:48:24,618 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:48:24,618 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:48:26,658 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:48:26,658 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:49:12,630 - AiServices - INFO - Fetching queued tasks
+2025-05-08 01:49:13,551 - AiServices - INFO - Found 1 queued tasks
+2025-05-08 01:49:13,551 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:49:13,551 - AiServices - INFO - Initialized new AI service instance for task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:49:13,898 - AiServices - INFO - Processing task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:49:14,531 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:49:14,533 - AiServices - INFO - Output content type: txt
+2025-05-08 01:49:15,685 - AiServices - INFO - Input files: [{'id': '692db533-a59b-46d7-9c91-882c024477e8', 'task_id': 'db8bfbe9-4af9-4ec1-89fe-1eaafed4e702', 'file_name': '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3', 'file_size': 14549036, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-07T20:29:14.549+00:00', 'updated_at': '2025-05-07T20:29:14.549+00:00'}]
+2025-05-08 01:49:15,687 - AiServices - INFO - Attempting to download file: 5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3 from https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:49:15,688 - AiServices - INFO - Extracted storage path: task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:49:15,689 - AiServices - INFO - Attempting direct download from URL: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:49:16,956 - AiServices - WARNING - Direct download failed: 400 Client Error: Bad Request for url: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3. Trying with service role key.
+2025-05-08 01:49:16,957 - AiServices - INFO - Requesting file with service role key: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3
+2025-05-08 01:49:27,931 - AiServices - INFO - Downloaded file with service role from https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.mp3 to D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-08 01:49:27,932 - AiServices - INFO - Successfully downloaded file: 5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-08 01:49:27,933 - AiServices - INFO - Downloaded 1 of 1 files
+2025-05-08 01:49:27,933 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3']
+2025-05-08 01:49:27,934 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-08 01:49:27,934 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3
+2025-05-08 01:49:42,331 - AiServices - INFO - Uploaded file '5.1 Graph Traversals - BFS DFS -Breadth First Search and Depth First Search [TubeRipper.com].mp3' as: https://generativelanguage.googleapis.com/v1beta/files/1ngy02q9zsyp (type: audio/mpeg)
+2025-05-08 01:49:42,332 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-08 01:50:04,953 - AiServices - INFO - Received response from Gemini
+2025-05-08 01:50:04,953 - AiServices - INFO - Hi, the topic is, breadth first search and death first search.
+In this video, I'll cover these two traversal methods by taking various examples.
+Breadth first search and depth first search are graph traversal methods.
+So, we'll understand quickly the difference between them through this a small example.
+Then afterward, I'll take another example and I will explain you in detail.
+Now, for quick understanding, I have taken a simple graph, actually it's a tree, but a tree is also a graph.
+So, let us see.
+So, for traversal, both of these traversal, we have to know these two terms.
+Now, for understanding these traversals, we should know two terms.
+One is visiting a vertex means going on a particular vertex.
+Second term is exploration of vertex.
+Exploration means if I am on some particular vertex, then visiting all its adjacent vertices is called as exploration.
+So, based on these two terms, we can understand traversals.
+So, first I will explain you breadth first search.
+See, I am selecting vertex one as the starting vertex to find out breadth first search.
+You can select any vertex as a starting vertex.
+Now, vertex one, I will visit the vertex one.
+Now, once the vertex is visited, this vertex, I will start exploring, means I will visit all adjacent vertices.
+So, who are those?
+5, 4, and 2.
+In which order I can visit?
+I can visit them in any order.
+So, okay, I will take two first, then four, then five.
+Next, I should select the next vertex for exploration.
+So, these are already visited vertices.
+After one, I have visited 2, 4, 5.
+Then I should explore, explore what?
+I will explore two.
+So, who are adjacent to two?
+Adjacent to two are 7, 6, 3.
+In which order you can take?
+You can take them in any order.
+7, then 3, then 6.
+In any order you can take.
+That's all.
+All the vertices are visited and there is no vertex remaining for exploration.
+This is breadth first search.
+Now, let us look at depth first search.
+I'll start from vertex one.
+Then from one, I have to start its exploration.
+So, I'll go to vertex two.
+2 Now, who are other adjacent vertices?
+4 and 5.
+No, don't visit them.
+You have reach a new vertex, so you start exploring that vertex.
+Okay, I'll start exploring two.
+Then who are adjacent to this?
+7, 6, and 3.
+So, I want to go to 3.
+Okay, go to 3.
+Then, shall I visit six and seven also?
+No, this is depth first search.
+Start exploring 3.
+So, if I start exploring 3, there is nothing connected to 3.
+Okay, so it means 3 is completely explored.
+Then come back and then continue the exploration of 2.
+So, who are there?
+6 Explore six, nothing is there.
+Come back.
+Go to 7.
+Explore 7, visit 7, explore 7, there is nothing.
+So, come back to one now.
+And continue the exploration of one.
+Who are adjacent to it?
+4.
+Visit 4 and explore 4.
+There is nothing, come back.
+Then go to 5.
+5.
+Now, in this way, all are explored.
+So, the traversals are different.
+Results are different.
+So, in breadth first search, we will explore a vertex, then we go to the next vertex for exploration.
+But in depth first search, once we started exploring, once we visited a new vertex, we will suspend this vertex and start its exploration.
+So, from one, we got two.
+So, we started exploring two.
+Then from two, we went on three.
+So, we'll start exploring three, like this.
+So, in depth for search approach is different and breadth for search approach is different.
+So, I'll take one more example and explain you what is the difference between breadth first search and F first search with a simple example.
+One more example.
+Let us find breadth first search.
+Actually, this is a binary tree.
+Tree is also a graph.
+So, let us perform breadth first search and see.
+So, as per binary tree, I will perform level order.
+1, then 2, 3, then 4, 5, 6, 7.
+This is breadth first search.
+Means breadth first search is just like a level order on a binary tree.
+Then what is a depth first search?
+Visit one.
+Okay.
+Explore one.
+So, we got two.
+So, stop exploring one and start exploring two.
+So, four.
+Stop exploring two and continue exploration of four.
+There is nothing.
+So, go back and come to five.
+Now, nothing is remaining.
+So, go back to one and come on this side.
+Then six, then go back and seven.
+So, this is like preorder.
+So, breadth first search is just like level order.
+And depth first search is just like preorder traversal of a graph.
+I have taken a bigger graph now.
+We will learn about breadth first search and F first search in detail.
+First of all, breadth first search.
+For performing breadth first search, I will take one data structure that is Q.
+I have taken a Q.
+Now, I'll explain you initial step.
+Then I will explain you repeating step.
+So, what is the initial step?
+Start exploration from any one of the vertex.
+So, which vertex I should select as a starting vertex for but first search?
+You can select any vertex you like.
+So, I'll select vertex one.
+So, in the answer you show it one.
+In the graph you draw here again, then add it to Q.
+This is the first step, initial step.
+Now, we will perform repeating steps.
+So, what are those repeating steps?
+Take out a vertex from Q and start exploring it.
+So, vertex one, who are adjacent to one?
+4 and 2.
+So, explore them.
+So, first I want to visit 4.
+Okay, add it to result and also add it to Q.
+Next I want to go to 2.
+Okay, add it to result and also add it to Q.
+Now, one is completely explored.
+There is no adjacent vertex remaining for vertex one.
+This is first iteration completed.
+Now repeat the procedure.
+What to do next?
+Select next vertex for exploration from Q.
+That is 4.
+Start exploring 4.
+So, who is adjacent to 4?
+3.
+So, I am drawing it like a tree here.
+So, 3 is adjacent.
+So, add it to Q.
+Any other adjacent for 4?
+Nothing is adjacent for 4.
+So, 4 is completely explored.
+Now, select next vertex for exploration.
+That is 2.
+Who are adjacent to 2?
+3, 5, 7, 8.
+I can visit them in any order.
+If I check 3, it's already explored.
+So, then I will prefer going on 5 first.
+So, 5 5.
+Next I want to go on 8.
+Okay, 8.
+So, 8 and 8.
+Next I will go on 7.
+So, 7 and add 7 here.
+Now, 2 is completely explored.
+Now select next vertex for exploration.
+Who is that?
+3 Is there any adjacent vertices for 3?
+Yes, 2, 8, 9, and 10.
+So, 2 is already visited.
+So, first I will take 10 10 And then 9 9 Add it to Q.
+Completed, 3 is completely explored.
+Now select next vertex for exploration.
+5.
+Anybody adjacent to 5?
+Yes, 8 and 7 and 6.
+So, 8 already visited.
+7 already visited.
+6.
+This is 6.
+So, 6 and 6.
+5 is completely explored.
+Select the next vertex for exploration.
+8.
+Who is adjacent to 8?
+2 and 7, 2 actually we came from there.
+7.
+Draw a dotted line.
+So, vertex which is already visited, we are drawing a dotted line.
+Then next vertex for exploration.
+7.
+7 is already explored.
+So, is there anything remaining for 7?
+No.
+10.
+There is nothing nearer to 10.
+No nothing adjacent to 10.
+There is nothing adjacent to 9 and there is nothing adjacent to 6.
+So, that's all.
+This is breadth first search completed and the tree that we got here is breadth first search spanning tree.
+Dotted edges that we got here, they are called as cross edges.
+They are called as cross edges.
+Let us see what are the things that we have learned.
+First thing is you can start breadth first search from any vertex you like.
+First point.
+Second thing is when you are exploring any vertex 1, then you can visit this adjacent vertices in any order you like.
+This was the second thing.
+Then both are leniancy is given, freedom is given to select any vertex.
+Then what is the rule here?
+Rule is when you are selecting a vertex for exploration, you must visit all its adjacent vertices.
+Then only you should go to next vertex for exploration.
+So, it if I am exploring 1, then I should visit 4 as well as 2, then only I should select 4 for exploration.
+This is the rule.
+The next thing is, last thing is you should select the next vertex for exploration from a Q only.
+So, Q and exploration should be completely done.
+These are the two important points about breadth first search.
+Follow this one, then you can get many answers.
+I will write few more valid breadth first searches here.
+First one, I'll start from vertex 1.
+Then I'll explore the adjacent vertices.
+So, first I'll explore 2, then 4.
+Then I have to start exploring 2 because I have visited 2 first.
+So, who are adjacent to 2?
+So, I will take 8, then 5, then 7, then 3.
+These are adjacent to 2.
+All these are adjacent to 2.
+Then I should explore which one?
+4 So, who are adjacent to 4?
+3.
+It's already over.
+Then explore 8, who is adjacent to 8?
+5 and 7, both are visited.
+Now explore 7.
+So, this is 6.
+Now, explore 3.
+So, 10 and 9.
+So, 10 and 9.
+This is one also.
+This one is also a valid answer.
+Then one more.
+I'll start exploration from 5.
+From 5, who are adjacent?
+2, 8, 7, and 6.
+Now explore 2, who are adjacent to 2?
+3 and 1.
+Now explore 8.
+7 is already visited.
+7, everything is visited.
+6, nothing is there.
+So, everything is visited.
+Explore 3.
+So, 9 and 10.
+And 4.
+So, for 3, 9, 10, and 4, I have visited.
+Now explore 1, nothing is remaining.
+9, 10, 4, not all are visited.
+So, this is also valid.
+So, like this you can start from any vertex and you can visit the adjacent in any order, so you can form numerous number of valid breadth first search.
+Next, we will see depth first search.
+Now next is depth first search.
+For this, I will take a stack.
+Stack is a data structure used here.
+Let us start.
+I can start the traversal from any vertex I like.
+So, I want to start from vertex one.
+So, one is visited.
+This is the initial step.
+Now the repeating step.
+What I have to do every time?
+As this new vertex is visited, start exploring it.
+So, who are adjacent to that?
+4 and 2.
+So, visit 4.
+Now, the rule in depth first searches once you have visited one vertex, still one more is remaining.
+Leave that, we will see it afterwards.
+First you start exploring four.
+So, this is the rule.
+So, once you have reached a new vertex, start exploring that new vertex.
+What about that one?
+Suspend it and keep it in the step that we can explore it later.
+Now start exploring four.
+So, from four, I can go on three.
+So, okay, go to three.
+Three is visited.
+Now what to do?
+Suspend four and start exploring three.
+From three, I can go on 10.
+So, 10 Suspend 3, start exploring 10.
+There is no adjacent vertex of 10.
+So, go back to 3.
+So, how to know I where I have to go back?
+This stack will give me their value.
+So, this three.
+Continue exploring 3.
+So, I can go on nine.
+9 And again suspend 3 and start exploring 9.
+From 9, I cannot go anywhere.
+Then go back to 3 and start exploring 3.
+So, who is adjacent to 3?
+2.
+So, 2 is visited.
+Then from 2, who is adjacent?
+Suspend 2 and start exploring 2.
+So, from 2, 8 is adjacent.
+So, take 8.
+Now, start exploring 8.
+So, from there, I can go on 7.
+So, suspend 8.
+So, 7 is visited.
+Now we have to explore 7.
+From 7, I can go on 5.
+So, 5 is newly visited.
+Now we have to start exploring 5.
+So, suspend 7 and push it into the stack.
+Then from 5, who is adjacent?
+6.
+So, visit 6, suspend 5, and continue exploration of 6.
+There is nothing adjacent to 6.
+So, go back to 5.
+From 5, where I can go further?
+So, I can visit 2 which is already completed.
+Right?
+I can visit 8 which is already completed.
+So, there is nothing remaining for 5.
+So, what happens in this way is we are going deep and deep, right?
+So, in this way, almost all vertices are
+2025-05-08 01:50:04,959 - AiServices - INFO - Saving response as txt file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.txt
+2025-05-08 01:50:04,961 - AiServices - INFO - Response saved to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.txt
+2025-05-08 01:50:05,598 - AiServices - INFO - Uploading file to Supabase with service role: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/output_db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.txt
+2025-05-08 01:50:06,280 - AiServices - INFO - Uploaded file, public URL: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/output_db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.txt
+2025-05-08 01:50:06,810 - AiServices - INFO - Preparing to send output for task ID: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:50:06,810 - AiServices - INFO - Fetching user details for task ID: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:50:07,587 - AiServices - INFO - Found user details for task ID: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:50:07,959 - AiServices - WARNING - File https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/output_db8bfbe9-4af9-4ec1-89fe-1eaafed4e702.txt not found or doesn't exist
+2025-05-08 01:50:07,959 - AiServices - ERROR - No attachable files found for task ID: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:50:07,959 - AiServices - WARNING - Email could not be sent for task: db8bfbe9-4af9-4ec1-89fe-1eaafed4e702
+2025-05-08 01:50:08,344 - AiServices - INFO - Task db8bfbe9-4af9-4ec1-89fe-1eaafed4e702 completed successfully
+2025-05-08 01:56:41,061 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:56:41,062 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:56:59,954 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:56:59,955 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:57:01,921 - AiServices - INFO - DatabaseService initialized with Supabase client
+2025-05-08 01:57:01,921 - AiServices - INFO - EmailService initialized successfully with Resend API
+2025-05-08 01:58:47,211 - AiServices - INFO - Fetching queued tasks
+2025-05-08 01:58:47,824 - AiServices - INFO - Found 1 queued tasks
+2025-05-08 01:58:47,824 - AiServices - INFO - AiServices initialized with model: gemini-2.0-flash
+2025-05-08 01:58:47,824 - AiServices - INFO - Initialized new AI service instance for task: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:58:48,022 - AiServices - INFO - Processing task: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:58:48,793 - AiServices - INFO - Output content type response: data=[{'id': 'c0a80101-0000-0000-0000-000000000003', 'name': 'TXT', 'created_at': '2025-05-03T17:44:52.904933+00:00', 'updated_at': '2025-05-03T17:44:52.904933+00:00', 'extensions': ['.txt']}] count=None
+2025-05-08 01:58:48,795 - AiServices - INFO - Output content type: txt
+2025-05-08 01:58:50,121 - AiServices - INFO - Input files: [{'id': '1af4c634-dde2-4d9c-a587-7de730865224', 'task_id': '8c4c6771-7238-4ff2-816a-5b8630028dc5', 'file_name': 'SRS_DOCUMENT_NextGenCoders.pdf', 'file_type_id': 'c0a80101-0000-0000-0000-000000000021', 'need_ocr': False, 'stored_location': 'https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf', 'file_size': 1120723, 'file_category': 'input', 'data_value': None, 'created_at': '2025-05-07T20:58:47.005+00:00', 'updated_at': '2025-05-07T20:58:47.005+00:00'}]
+2025-05-08 01:58:50,122 - AiServices - INFO - Attempting to download file: SRS_DOCUMENT_NextGenCoders.pdf from https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf
+2025-05-08 01:58:50,122 - AiServices - INFO - Extracted storage path: task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf
+2025-05-08 01:58:50,122 - AiServices - INFO - Attempting direct download from URL: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf
+2025-05-08 01:58:51,214 - AiServices - WARNING - Direct download failed: 400 Client Error: Bad Request for url: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf. Trying with service role key.
+2025-05-08 01:58:51,215 - AiServices - INFO - Requesting file with service role key: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf
+2025-05-08 01:58:53,886 - AiServices - INFO - Downloaded file with service role from https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/8c4c6771-7238-4ff2-816a-5b8630028dc5.pdf to D:\Nabiha\projects\FYP\eduhelpify\docs\input\SRS_DOCUMENT_NextGenCoders.pdf
+2025-05-08 01:58:53,886 - AiServices - INFO - Successfully downloaded file: SRS_DOCUMENT_NextGenCoders.pdf
+2025-05-08 01:58:53,886 - AiServices - INFO - Downloaded 1 of 1 files
+2025-05-08 01:58:53,897 - AiServices - INFO - File paths: ['D:\\Nabiha\\projects\\FYP\\eduhelpify\\docs\\input\\SRS_DOCUMENT_NextGenCoders.pdf']
+2025-05-08 01:58:53,897 - AiServices - INFO - UPLOADING: D:\Nabiha\projects\FYP\eduhelpify\docs\input\SRS_DOCUMENT_NextGenCoders.pdf
+2025-05-08 01:58:53,897 - AiServices - INFO - Started uploading: D:\Nabiha\projects\FYP\eduhelpify\docs\input\SRS_DOCUMENT_NextGenCoders.pdf
+2025-05-08 01:58:58,720 - AiServices - INFO - Uploaded file 'SRS_DOCUMENT_NextGenCoders.pdf' as: https://generativelanguage.googleapis.com/v1beta/files/ahu0zhtmd6qu (type: application/pdf)
+2025-05-08 01:58:58,720 - AiServices - INFO - Sending message to Gemini with files and prompt
+2025-05-08 01:59:05,972 - AiServices - INFO - Received response from Gemini
+2025-05-08 01:59:05,972 - AiServices - INFO - ```json
+{
+  "response": {
+    "structure": "The use case diagram visually represents the interactions between users (actors) and the AI Assistant system. Here's a breakdown:\n\n*   **Actors:**\n    *   **User:** Represents a general user who interacts with the system.\n    *   **Administrator:** Represents an administrator who manages the system.\n\n*   **Use Cases (within the AI Assistant boundary):**\n    *   **Manage Performance:** (Administrator) Manages the performance of the AI system.\n    *   **Manage Accounts:** (Administrator) Manages user accounts.\n    *   **Manage Security:** (Administrator) Manages security aspects of the system.\n    *   **Apply Summary Mode:** Applies summary mode to the content.\n    *   **Generate Content:** Generates content based on the user's input.\n    *   **Apply Difficulty Level:** Applies the specified difficulty level to the content.\n    *   **Upload Input:** (User) Uploads input content for processing.\n    *   **Set User Configuration:** (User) Configures user-specific settings.\n    *   **Download Content:** (User) Downloads the generated content.\n    *   **Export Content:** (User) Exports content.\n\n*   **Relationships:**\n    *   **Association:** Solid lines connecting actors to use cases, indicating participation.\n    *   **Include:** An `<<include>>` relationship means one use case is always part of another (e.g., Generate Content *includes* Apply Difficulty Level).\n    *   **Extend:** An `<<extend>>` relationship means one use case can optionally extend another (e.g., Export Content *extends* Download Content).",
+    "output_ready": true,
+    "difficulty_level": "intermediate",
+    "content_length": "short"
+  }
+}
+```
+2025-05-08 01:59:05,988 - AiServices - INFO - Saving response as txt file to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:05,988 - AiServices - INFO - Response saved to D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:06,627 - AiServices - INFO - Uploading file to Supabase with service role: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/eduhelpify/task/output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:07,304 - AiServices - INFO - Uploaded file, public URL: https://augolydfqodsoltutiau.supabase.co/storage/v1/object/public/eduhelpify/task/output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:07,652 - AiServices - INFO - Preparing to send output for task ID: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:59:07,652 - AiServices - INFO - Fetching user details for task ID: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:59:08,241 - AiServices - INFO - Found user details for task ID: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:59:08,596 - AiServices - INFO - Using direct task output path: D:\Nabiha\projects\FYP\eduhelpify\docs\output\output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:08,596 - AiServices - INFO - Added attachment: output_8c4c6771-7238-4ff2-816a-5b8630028dc5.txt
+2025-05-08 01:59:09,929 - AiServices - INFO - Email sent successfully to f21bb045@ibitpu.edu.pk for task ID: 8c4c6771-7238-4ff2-816a-5b8630028dc5
+2025-05-08 01:59:10,278 - AiServices - INFO - Task 8c4c6771-7238-4ff2-816a-5b8630028dc5 completed successfully

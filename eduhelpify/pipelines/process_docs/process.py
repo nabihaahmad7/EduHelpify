@@ -1,21 +1,107 @@
 import os
 import json
+import requests
+from urllib.parse import urlparse
 from flask import Flask, request, jsonify
 from utils.logger import Logger
 from utils.database_service import DatabaseService
 from utils.ai_services import AiServices
 from utils.email_service import EmailService
 import dotenv
+import base64
 
 dotenv.load_dotenv(override=True)
 STORE_LOCATION = os.getenv("STORE_LOCATION")
+SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
+SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 app = Flask(__name__)
 
-# Initialize services
+# Initialize shared services
 logger = Logger(log_file="eduhelpify.log")
 db_service = DatabaseService(logger)
-ai_service = AiServices(logger=logger)
 email_service = EmailService(logger, db_service)
+
+def download_file(url, task_id, file_name):
+    """Download file from URL and save to local path"""
+    try:
+        # Create input directory if it doesn't exist
+        input_dir = os.path.join(STORE_LOCATION, 'input')
+        os.makedirs(input_dir, exist_ok=True)
+        
+        # Check if URL is actually a local path
+        if not url.startswith('http'):
+            # It's a local path, just return it
+            logger.info(f"Using local file path: {url}")
+            return url
+
+        # Parse URL to extract storage path
+        parsed_url = urlparse(url)
+        path_parts = parsed_url.path.split('/')
+        
+        # Find the part after 'eduhelpify/' in the path
+        storage_path = None
+        for i, part in enumerate(path_parts):
+            if part == 'eduhelpify' and i < len(path_parts) - 1:
+                storage_path = '/'.join(path_parts[i+1:])
+                break
+        
+        if not storage_path:
+            logger.error(f"Could not parse storage path from URL: {url}")
+            raise ValueError(f"Invalid storage URL format: {url}")
+            
+        logger.info(f"Extracted storage path: {storage_path}")
+        
+        # Create local file path
+        local_path = os.path.join(input_dir, file_name)
+        
+        # Try to download directly first
+        try:
+            logger.info(f"Attempting direct download from URL: {url}")
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+            
+            # Save file
+            with open(local_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+                    
+            logger.info(f"Downloaded file directly from {url} to {local_path}")
+            return local_path
+        except Exception as direct_error:
+            logger.warning(f"Direct download failed: {str(direct_error)}. Trying with service role key.")
+            
+            # Use service role key to get signed URL if direct download fails
+            if SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY:
+                try:
+                    # Construct API endpoint for downloading with service role
+                    api_endpoint = f"{SUPABASE_URL}/storage/v1/object/eduhelpify/{storage_path}"
+                    
+                    headers = {
+                        "Authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
+                        "apikey": SUPABASE_SERVICE_ROLE_KEY
+                    }
+                    
+                    logger.info(f"Requesting file with service role key: {api_endpoint}")
+                    response = requests.get(api_endpoint, headers=headers, stream=True)
+                    response.raise_for_status()
+                    
+                    # Save file
+                    with open(local_path, 'wb') as f:
+                        for chunk in response.iter_content(chunk_size=8192):
+                            f.write(chunk)
+                    
+                    logger.info(f"Downloaded file with service role from {api_endpoint} to {local_path}")
+                    return local_path
+                except Exception as service_error:
+                    logger.error(f"Service role download failed: {str(service_error)}")
+                    raise
+            else:
+                logger.error("Service role key not available for authenticated download")
+                raise direct_error
+        
+    except Exception as e:
+        logger.error(f"Error downloading file {url}: {str(e)}")
+        raise
 
 @app.route('/')
 def home():
@@ -25,6 +111,10 @@ def home():
 def process_task_by_id(task_id):
     """Process a specific task by ID"""
     try:
+        # Initialize a fresh AI service instance for this task
+        ai_service = AiServices(logger=logger)
+        logger.info(f"Initialized new AI service instance for task: {task_id}")
+        
         # Update task status to Processing
         db_service.update_task_status(task_id, "INPROGRESS")
         logger.info(f"Processing task: {task_id}")
@@ -89,14 +179,37 @@ def process_task_by_id(task_id):
             logger.error(f"No input files found for task: {task_id}")
             db_service.update_task_status(task_id, "Failed")
             return jsonify({"status": "error", "message": "No input files found"}), 400
-        input_dir = os.path.join(STORE_LOCATION, 'input')
-        logger.info(f"Input directory: {input_dir}")
-        # Extract file paths
-        file_paths = [os.path.join(input_dir, file['file_name']) for file in input_files if os.path.exists(os.path.join(input_dir, file['file_name']))]
+        
+        # Download files from URLs and get local paths
+        file_paths = []
+        successful_downloads = 0
+        total_files = len(input_files)
+        
+        for file in input_files:
+            try:
+                # Get the stored location which is now a URL
+                stored_location = file['stored_location']
+                file_name = file['file_name']
+                
+                logger.info(f"Attempting to download file: {file_name} from {stored_location}")
+                
+                # Download the file and get the local path
+                local_path = download_file(stored_location, task_id, file_name)
+                file_paths.append(local_path)
+                successful_downloads += 1
+                
+                logger.info(f"Successfully downloaded file: {file_name}")
+            except Exception as e:
+                logger.error(f"Error downloading file {file['file_name']}: {str(e)}")
+                # Continue with other files
+        
+        logger.info(f"Downloaded {successful_downloads} of {total_files} files")
+        
         if not file_paths:
             logger.error(f"No valid input file paths found for task: {task_id}")
             db_service.update_task_status(task_id, "Failed")
             return jsonify({"status": "error", "message": "No valid input files found"}), 400
+        
         logger.info(f"File paths: {file_paths}")
         # User prompt - can be customized based on your needs
         user_prompt = task.get("user_prompt", "")
@@ -115,7 +228,7 @@ def process_task_by_id(task_id):
                 output_path=output_path
             )
             
-        # Determine file extension based on output type
+            # Determine file extension based on output type
             file_extension = "txt"  # Default
             output_type_response = db_service.supabase.table("contenttype").select("*").eq("id", task["output_content_type_id"]).execute()
             if output_type_response.data and len(output_type_response.data) > 0:
@@ -134,12 +247,45 @@ def process_task_by_id(task_id):
             final_output_path = f"{output_dir}/output_{task_id}.{file_extension}"
             if output_path != final_output_path:
                 os.rename(output_path, final_output_path)
+            
+            stored_location = final_output_path  # Default to local path
                 
+            # Upload the output file to Supabase Storage using service role
+            if SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY:
+                try:
+                    # Construct API endpoint for uploads with service role
+                    api_endpoint = f"{SUPABASE_URL}/storage/v1/object/eduhelpify/task/output_{task_id}.{file_extension}"
+                    
+                    headers = {
+                        "Authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
+                        "apikey": SUPABASE_SERVICE_ROLE_KEY,
+                        "Content-Type": f"application/{file_extension}"
+                    }
+                    
+                    # Read file content
+                    with open(final_output_path, 'rb') as file_content:
+                        file_data = file_content.read()
+                    
+                    # Upload file
+                    logger.info(f"Uploading file to Supabase with service role: {api_endpoint}")
+                    response = requests.post(api_endpoint, data=file_data, headers=headers)
+                    response.raise_for_status()
+                    
+                    # Get the public URL
+                    public_url = f"{SUPABASE_URL}/storage/v1/object/public/eduhelpify/task/output_{task_id}.{file_extension}"
+                    stored_location = public_url
+                    logger.info(f"Uploaded file, public URL: {public_url}")
+                except Exception as e:
+                    logger.error(f"Error uploading to Supabase: {str(e)}")
+                    # Continue with local path
+            else:
+                logger.warning("Service role key not available, using local path")
+            
             output_data = {
                 "task_id": task_id,
                 "file_name": f"output_{task_id}.{file_extension}",
                 "file_type_id": task["output_content_type_id"],
-                "stored_location": final_output_path,
+                "stored_location": stored_location,
                 "file_category": "output",
                 "need_ocr": False
             }
@@ -183,7 +329,7 @@ def process_queue():
         results = []
         for task in queued_tasks:
             task_id = task["id"]
-            # Process each task
+            # Process each task (each will get its own AI service instance)
             response = process_task_by_id(task_id)
             results.append({
                 "task_id": task_id,

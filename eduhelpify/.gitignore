@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-
+./__pycache__
 # next.js
 /.next/
 /out/

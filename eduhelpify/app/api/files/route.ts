@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { taskService } from '../task/service';
 import { fileStoreService } from '../files/service';
-import { v4 as uuidv4 } from 'uuid';
-import fs from 'fs';
-import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,31 +36,29 @@ export async function POST(request: NextRequest) {
     const files = formData.getAll('files') as File[];
     const fileResponses = [];
     
-    // Create the directory path if it doesn't exist
-    const uploadDir = path.join(process.cwd(), 'pipeline', 'process_docs', 'uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    
     // Process and store files if any
     if (files && files.length > 0) {
       for (const file of files) {
         if (file.size > 0) {
+          // Upload file to Supabase storage
+          const { path: fileUrl, error: uploadError } = await fileStoreService.uploadFile(file, taskId);
+          
+          if (uploadError) {
+            return NextResponse.json(
+              { error: 'Failed to upload file', details: uploadError },
+              { status: 400 }
+            );
+          }
+          
           // Get file extension
           const fileExtension = file.name.split('.').pop() || '';
-          const fileName = `${taskId}_${Date.now()}.${fileExtension}`;
-          const filePath = path.join(uploadDir, fileName);
-          
-          // Convert File to Buffer and save it
-          const buffer = Buffer.from(await file.arrayBuffer());
-          fs.writeFileSync(filePath, buffer);
           
           // Save file metadata to the database
           const { file: fileRecord, error: fileError } = await fileStoreService.saveFileMetadata({
             task_id: taskId,
             file_name: file.name,
             file_size: file.size,
-            stored_location: filePath,
+            stored_location: fileUrl,
             need_ocr: fileExtension.toLowerCase() === 'pdf' || fileExtension.toLowerCase() === 'docx',
             file_category: 'input',
             file_type_id: inputContentTypeId,
