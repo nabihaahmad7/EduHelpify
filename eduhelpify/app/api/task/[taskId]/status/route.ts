@@ -1,12 +1,19 @@
+export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server';
 import { taskService } from '../../service';
 
+type RouteParams = {
+  params: {
+    taskId: string;
+  };
+};
+
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { taskId: string } }
+  { params }: { params: Promise<{ taskId: string }> }
 ) {
   try {
-    const taskId = params.taskId;
+    const taskId = (await params).taskId;
     const { status } = await request.json();
     
     if (!status) {

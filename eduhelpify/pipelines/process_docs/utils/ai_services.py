@@ -240,7 +240,25 @@ class AiServices:
         prs = Presentation()
         self.logger.info(f"Slide data: {slide_data}")
         # Check if slides is a list (new format) or dict (old format)
-        if isinstance(slide_data.get("slides"), list):
+        if isinstance(slide_data, list):
+            # Process direct list of slides format
+            for slide_info in slide_data:
+                title = slide_info.get("title", "")
+                content = slide_info.get("content", "")
+                
+                # Use title and content slide layout
+                content_slide_layout = prs.slide_layouts[1]
+                slide = prs.slides.add_slide(content_slide_layout)
+                
+                # Set the title
+                title_shape = slide.shapes.title
+                title_shape.text = title
+                
+                # Set the content
+                body_shape = slide.placeholders[1]
+                tf = body_shape.text_frame
+                tf.text = content
+        elif isinstance(slide_data.get("slides"), list):
             # Process list-based slides format
             for slide_info in slide_data["slides"]:
                 title = slide_info.get("title", "")
@@ -258,6 +276,7 @@ class AiServices:
                 body_shape = slide.placeholders[1]
                 tf = body_shape.text_frame
                 tf.text = content
+
         elif isinstance(slide_data.get("slides"), dict):
             # Process original dict-based slides format
             for slide_id, slide_info in slide_data["slides"].items():
