@@ -49,41 +49,65 @@ export default function Header({ toggleSidebar }) { // Accept toggleSidebar from
   };
 
   return (
-    <header className={`h-16 shadow-md flex items-center justify-between px-4 md:px-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-      <button className="md:hidden" onClick={toggleSidebar}>
-        <FontAwesomeIcon icon={faBars} className="text-2xl" style={{ color: theme.colors.icon }} />
-      </button>
-      <div className="text-xl font-semibold" style={{ color: theme.colors.text }}>
-        Dashboard
-      </div>
-      <div className="flex items-center space-x-4">
-        <ThemeToggle />
-        <div className="flex items-center space-x-3">
-          <span className="hidden md:block" style={{ color: theme.colors.text }}>
-            {userData.name}
-          </span>
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: theme.colors.primary }}>
-            {userData.profilePic ? (
-              <img src={userData.profilePic} alt="Profile" className="w-full h-full object-cover rounded-full" />
-            ) : (
-              <FontAwesomeIcon icon={faUser} className="text-lg" />
-            )}
-          </div>
-          <button
-            onClick={handleLogout}
-            style={{
-              backgroundColor: theme.colors.primary,
-              color: theme.colors.buttonText,
-              borderRadius: '4px',
-              padding: '2px',
-              cursor:"pointer"
-            }}
-          >
-            <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
-            Logout
-          </button>
-        </div>
-      </div>
-    </header>
+<header 
+  className={`h-20 shadow-md flex items-center justify-between px-4 sm:px-6 fixed top-0 left-0 right-0 z-50 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} transition-all duration-300`}
+>
+  {/* Left: Logo + Hamburger */}
+  <div className="flex items-center space-x-4">
+    
+    {/* Mobile: Hamburger Menu */}
+    <button className="md:hidden" onClick={toggleSidebar}>
+      <FontAwesomeIcon icon={faBars} className="text-2xl" style={{ color: theme.colors.icon }} />
+    </button>
+
+    {/* Logo */}
+    <img
+      src="/images/logo.png"
+      alt="Logo"
+      className="h-8 sm:h-10 object-contain"
+    />
+  </div>
+
+  {/* Right: Theme + User Info + Logout */}
+  <div className="flex items-center space-x-3 sm:space-x-4">
+    <ThemeToggle />
+
+    {/* Username */}
+    <span
+      className="hidden sm:inline-block text-sm sm:text-base font-medium"
+      style={{ color: theme.colors.text }}
+    >
+      {userData.name}
+    </span>
+
+    {/* Avatar */}
+    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-gray-400 flex items-center justify-center">
+      {userData.profilePic ? (
+        <img
+          src={userData.profilePic}
+          alt="Profile"
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <FontAwesomeIcon icon={faUser} className="text-white text-lg" />
+      )}
+    </div>
+
+    {/* Logout Button */}
+    <button
+      onClick={handleLogout}
+      className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-medium transition-colors"
+      style={{
+        backgroundColor: theme.colors.primary,
+        color: theme.colors.buttonText
+      }}
+    >
+      <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
+      Logout
+    </button>
+  </div>
+</header>
+
+
   );
 }

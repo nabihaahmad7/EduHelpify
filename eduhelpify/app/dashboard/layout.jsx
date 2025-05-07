@@ -3,6 +3,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import Header from './_components/Header';
 import Sidebar from './_components/Sidebar';
 import { useState, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 export default function DashboardLayout({ children }) {
   const { isDarkMode } = useTheme();
@@ -46,14 +47,14 @@ export default function DashboardLayout({ children }) {
 
         {/* Main Content Area */}
         <main className={`flex-1 transition-margin duration-300 ${
-          isMobile ? (sidebarVisible ? 'ml-64' : 'ml-0') : 'ml-64'
-        }`}>
-          <div className="p-4 md:p-6 h-full">
-            <div className="h-full">
-              {children}
-            </div>
-          </div>
-        </main>
+  isMobile ? (sidebarVisible ? 'ml-64' : 'ml-0') : 'ml-64'
+}`}>
+  <div className="p-4 md:p-6 h-full">
+    <div className="h-full">
+      {children}
+    </div>
+  </div>
+</main>
 
         {/* Mobile Overlay */}
         {isMobile && sidebarVisible && (

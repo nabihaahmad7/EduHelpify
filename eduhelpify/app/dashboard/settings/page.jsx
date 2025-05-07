@@ -1,7 +1,7 @@
 "use client";
 import { useTheme } from '../../../contexts/ThemeContext';
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { Spinner } from '../_components/spinner';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -164,167 +164,111 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className={`flex-1 p-4 overflow-hidden ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="max-w-4xl mx-auto">
-        <h1 
-          className="text-2xl font-bold mb-6" 
-          style={{ color: theme.colors.text }}
-        >
-          Settings
-        </h1>
-        
-        {/* Profile Settings */}
-        
-        {/* Task Configuration Settings */}
-        <div className="p-6 rounded-lg shadow-sm overflow-y-hidden" style={{ backgroundColor: isDarkMode ? theme.colors.cardBg : 'white' }}>
-          <h2 className="text-xl font-semibold mb-4" style={{ color: theme.colors.primary }}>Task Configuration</h2>
-          <form onSubmit={handleTaskConfigSubmit}>
-            <div className="space-y-6">
-              {/* Content Length */}
-              <div>
-                <label 
-                  className="block text-sm font-medium mb-1"
-                  style={{ color: theme.colors.primary }}
-                >
-                  Content Length
-                </label>
-                <select
-                  name="content_length"
-                  className="w-full p-2 border rounded focus:outline-none text-sm"
-                  style={{
-                    borderColor: theme.colors.inputBorder,
-                    color: theme.colors.inputText,
-                    backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                  }}
-                  value={taskConfig.content_length}
-                  onChange={handleTaskConfigChange}
-                  disabled={isLoading}
-                >
-                  <option value="short">Short</option>
-                  <option value="medium">Medium</option>
-                  <option value="detailed">Detailed</option>
-                </select>
-                <p className="mt-1 text-xs text-gray-500">Select how detailed you want the content to be</p>
-              </div>
-              
-              {/* Focus Area */}
-              <div>
-                <label 
-                  className="block text-sm font-medium mb-1"
-                  style={{ color: theme.colors.primary }}
-                >
-                  Focus Area
-                </label>
-                <select
-                  name="focus_area_type"
-                  className="w-full p-2 border rounded focus:outline-none text-sm mb-2"
-                  style={{
-                    borderColor: theme.colors.inputBorder,
-                    color: theme.colors.inputText,
-                    backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                  }}
-                  value={selectedFocusArea}
-                  onChange={handleFocusAreaChange}
-                  disabled={isLoading}
-                >
-                  <option value="">Select a focus area</option>
-                  <option value="table">Tables</option>
-                  <option value="diagram">Diagrams</option>
-                  <option value="heading">Headings</option>
-                  <option value="custom">Custom (specify below)</option>
-                </select>
-                
-                {selectedFocusArea === 'custom' && (
-                  <input 
-                    type="text" 
-                    name="custom_focus_area"
-                    placeholder="Enter custom focus area"
-                    className="w-full p-2 border rounded focus:outline-none text-sm"
-                    style={{
-                      borderColor: theme.colors.inputBorder,
-                      color: theme.colors.inputText,
-                      backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                    }}
-                    value={customFocusArea}
-                    onChange={handleCustomFocusAreaChange}
-                    disabled={isLoading}
-                  />
-                )}
-                <p className="mt-1 text-xs text-gray-500">Choose what elements to focus on in your content</p>
-              </div>
-              
-              {/* Difficulty Level */}
-              <div>
-                <label 
-                  className="block text-sm font-medium mb-1"
-                  style={{ color: theme.colors.primary }}
-                >
-                  Difficulty Level
-                </label>
-                <select
-                  name="difficulty_level"
-                  className="w-full p-2 border rounded focus:outline-none text-sm"
-                  style={{
-                    borderColor: theme.colors.inputBorder,
-                    color: theme.colors.inputText,
-                    backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                  }}
-                  value={taskConfig.difficulty_level}
-                  onChange={handleTaskConfigChange}
-                  disabled={isLoading}
-                >
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="expert">Expert</option>
-                </select>
-                <p className="mt-1 text-xs text-gray-500">Select the complexity level for generated content</p>
-              </div>
-              
-              {/* AI Model Selection */}
-              {/* <div>
-                <label 
-                  className="block text-sm font-medium mb-1"
-                  style={{ color: theme.colors.primary }}
-                >
-                  AI Model
-                </label>
-                <select
-                  name="AiModels_id"
-                  className="w-full p-2 border rounded focus:outline-none text-sm"
-                  style={{
-                    borderColor: theme.colors.inputBorder,
-                    color: theme.colors.inputText,
-                    backgroundColor: isDarkMode ? theme.colors.cardBg : 'white',
-                  }}
-                  value={taskConfig.AiModels_id || ''}
-                  onChange={handleTaskConfigChange}
-                  disabled={isLoading}
-                >
-                  <option value="">Select an AI model</option>
-                  {aiModels.map(model => (
-                    <option key={model.id} value={model.id}>
-                      {model.model_name}
-                    </option>
-                  ))}
-                </select>
-                <p className="mt-1 text-xs text-gray-500">Choose which AI model to use for task processing</p>
-              </div>
-               */}
-              <div className="flex justify-end">
-                <button 
-                  type="submit"
-                  className="text-white px-4 py-2 rounded hover:bg-opacity-90 transition disabled:opacity-50"
-                  style={{ backgroundColor: theme.colors.success }}
-                  disabled={isLoading}
-                >
-                  {isLoading ? <Spinner /> : 'Save Configuration'}
-                </button>
-              </div>
-            </div>
-          </form>
+<div className={`flex-1 py-10 px-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+  <div className="max-w-3xl mx-auto w-full">
+    <div className={`rounded-2xl shadow-xl p-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} transition-all duration-300`}>
+      <h2 className="text-xl md:text-2xl font-extrabold mb-4 text-center tracking-wide" style={{ color: theme.colors.text }}>
+      SETTINGS
+</h2>
+
+
+
+      <p className="text-center mb-6 text-sm" style={{ color: theme.colors.icon }}>
+      Update your task configuration preferences
+      </p>
+      {/* Task Configuration */}
+      <form onSubmit={handleTaskConfigSubmit} className="space-y-6">
+        {/* Content Length */}
+        <div>
+          <label className="block mb-2 font-medium" style={{ color: theme.colors.primary }}>
+            Content Length
+          </label>
+          <select
+            name="content_length"
+            className={`w-full px-4 py-3 border text-sm rounded-xl outline-none focus:ring-2 transition-all ${isDarkMode ? 'bg-gray-700 border-gray-600 focus:ring-blue-500' : 'bg-white border-gray-300 focus:ring-blue-200'}`}
+            style={{ color: theme.colors.inputText }}
+            value={taskConfig.content_length}
+            onChange={handleTaskConfigChange}
+            disabled={isLoading}
+          >
+            <option value="short">Short</option>
+            <option value="medium">Medium</option>
+            <option value="detailed">Detailed</option>
+          </select>
+          <p className="text-xs mt-1 text-gray-500">Select how detailed you want the content to be</p>
         </div>
-      </div>
+
+        {/* Focus Area */}
+        <div>
+          <label className="block mb-2 font-medium" style={{ color: theme.colors.primary }}>
+            Focus Area
+          </label>
+          <select
+            name="focus_area_type"
+            className={`w-full px-4 py-3 border text-sm rounded-xl outline-none focus:ring-2 transition-all mb-2 ${isDarkMode ? 'bg-gray-700 border-gray-600 focus:ring-blue-500' : 'bg-white border-gray-300 focus:ring-blue-200'}`}
+            style={{ color: theme.colors.inputText }}
+            value={selectedFocusArea}
+            onChange={handleFocusAreaChange}
+            disabled={isLoading}
+          >
+            <option value="">Select a focus area</option>
+            <option value="table">Tables</option>
+            <option value="diagram">Diagrams</option>
+            <option value="heading">Headings</option>
+            <option value="custom">Custom (specify below)</option>
+          </select>
+
+          {selectedFocusArea === 'custom' && (
+            <input
+              type="text"
+              name="custom_focus_area"
+              placeholder="Enter custom focus area"
+              className={`w-full px-4 py-3 border text-sm rounded-xl outline-none focus:ring-2 transition-all ${isDarkMode ? 'bg-gray-700 border-gray-600 focus:ring-blue-500' : 'bg-white border-gray-300 focus:ring-blue-200'}`}
+              style={{ color: theme.colors.inputText }}
+              value={customFocusArea}
+              onChange={handleCustomFocusAreaChange}
+              disabled={isLoading}
+            />
+          )}
+          <p className="text-xs mt-1 text-gray-500">Choose what elements to focus on in your content</p>
+        </div>
+
+        {/* Difficulty Level */}
+        <div>
+          <label className="block mb-2 font-medium" style={{ color: theme.colors.primary }}>
+            Difficulty Level
+          </label>
+          <select
+            name="difficulty_level"
+            className={`w-full px-4 py-3 border text-sm rounded-xl outline-none focus:ring-2 transition-all ${isDarkMode ? 'bg-gray-700 border-gray-600 focus:ring-blue-500' : 'bg-white border-gray-300 focus:ring-blue-200'}`}
+            style={{ color: theme.colors.inputText }}
+            value={taskConfig.difficulty_level}
+            onChange={handleTaskConfigChange}
+            disabled={isLoading}
+          >
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+          </select>
+          <p className="text-xs mt-1 text-gray-500">Select the complexity level for generated content</p>
+        </div>
+
+        {/* Submit Button */}
+        <div className="pt-2 flex justify-end">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`px-6 py-3 rounded-xl text-white font-semibold flex items-center justify-center shadow-md transition-all ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'hover:shadow-xl'}`}
+            style={{ backgroundColor: isLoading ? theme.colors.primary : theme.colors.primary }}
+          >
+            {isLoading ? <Spinner /> : 'Save Configuration'}
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
+
   );
 };
 
