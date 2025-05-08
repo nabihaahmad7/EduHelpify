@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
     if (!tasks || tasks.length === 0) {
       // If no tasks found, create a default task config
       const { data: defaultConfig, error: insertError } = await supabase
-        .from('TaskConfig')
+        .from('taskconfig')
         .insert({
           content_length: 'medium',
           focus_area: null,
