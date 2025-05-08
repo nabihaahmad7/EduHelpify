@@ -1,5 +1,4 @@
 "use client";
-
 import { useTheme } from '../../contexts/ThemeContext';
 import Header from './_components/Header';
 import Sidebar from './_components/Sidebar';
@@ -10,6 +9,21 @@ export default function DashboardLayout({ children }) {
   const { isDarkMode } = useTheme();
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setSidebarVisible(true); // Always show sidebar on desktop
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
