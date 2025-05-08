@@ -9,7 +9,7 @@ import { Toaster } from 'react-hot-toast';
 export default function DashboardLayout({ children }) {
   const { isDarkMode } = useTheme();
   const [sidebarVisible, setSidebarVisible] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(false);
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
