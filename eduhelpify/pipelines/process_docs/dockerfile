@@ -1,0 +1,38 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system dependencies (if needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container
+COPY . /app/
+
+# Create directories for file storage
+RUN mkdir -p /app/doc/input /app/doc/output
+
+# Set environment variables
+ENV NEXT_PUBLIC_SUPABASE_URL=https://augolydfqodsoltutiau.supabase.co
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1Z29seWRmcW9kc29sdHV0aWF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwMDg1MDYsImV4cCI6MjA2MTU4NDUwNn0.SEXiV22c4tO_0F5J59b8loMcM2iMYuU-SML_5PmvAXg
+ENV GOOGLE_API_KEY=AIzaSyBXYx_vlbM5d1tGKZkNbqG0DO5K_YcWz-k
+ENV SENDER_EMAIL=noreply@resend.dev
+ENV RESEND_API_KEY=re_j5tcLACZ_BfXuShSBJ5d9XkTwiCjtJw3T
+ENV TASK_PROCESSOR_URL=http://localhost:5000//process_queue
+ENV SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1Z29seWRmcW9kc29sdHV0aWF1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NjAwODUwNiwiZXhwIjoyMDYxNTg0NTA2fQ.xDzHiLGv3Zr6IxAsh5TnlEGZY77Mnk0blKeVNtOIAVg
+ENV STORE_LOCATION=/app/doc
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "process.py"]

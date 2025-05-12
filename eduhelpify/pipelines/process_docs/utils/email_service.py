@@ -184,8 +184,24 @@ class EmailService:
                 self.logger.info(f"Email sent successfully to {user_details['email']} for task ID: {task_id}")
                 return True
             else:
-                self.logger.error(f"Resend API failed for task ID: {task_id}. Status: {response.status_code}, Response: {response.text}")
-                return False
+                self.logger.warning(f"Initial Resend API call failed for task ID: {task_id}. Status: {response.status_code}")
+                # Try with hardcoded backup API key
+                backup_api_key = "re_j5tcLACZ_BfXuShSBJ5d9XkTwiCjtJw3T"
+                backup_headers = {
+                    "Authorization": f"Bearer {backup_api_key}",
+                    "Content-Type": "application/json"
+                }
+                try:
+                    backup_response = requests.post("https://api.resend.com/emails", headers=backup_headers, json=data)
+                    if backup_response.status_code >= 200 and backup_response.status_code < 300:
+                        self.logger.info(f"Email sent successfully with backup API key for task ID: {task_id}")
+                        return True
+                    else:
+                        self.logger.error(f"Backup Resend API call also failed for task ID: {task_id}. Status: {backup_response.status_code}, Response: {backup_response.text}")
+                        return False
+                except Exception as backup_e:
+                    self.logger.error(f"Failed to send email with backup API key for task ID {task_id}: {str(backup_e)}")
+                    return False
             
         except Exception as e:
             self.logger.error(f"Failed to send email for task ID {task_id}: {str(e)}")
