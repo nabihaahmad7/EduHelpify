@@ -27,6 +27,7 @@ export default function AuthPage() {
         
         if (error) throw error;
       } else {
+        
         const result = await signIn(provider, { callbackUrl: '/dashboard' });
         if (result?.error) throw new Error(result.error);
       }
@@ -79,7 +80,7 @@ export default function AuthPage() {
           <button
             onClick={() => handleSocialLogin('google')}
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 hover:bg-opacity-90"
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 hover:bg-opacity-90 cursor-pointer "
             style={{
               backgroundColor: theme.colors.authButton,
               color: theme.colors.authButtonText,

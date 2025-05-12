@@ -56,7 +56,7 @@ export default function Header({ toggleSidebar }) { // Accept toggleSidebar from
   <div className="flex items-center space-x-4">
     
     {/* Mobile: Hamburger Menu */}
-    <button className="md:hidden" onClick={toggleSidebar}>
+    <button className="md:hidden " onClick={toggleSidebar}>
       <FontAwesomeIcon icon={faBars} className="text-2xl" style={{ color: theme.colors.icon }} />
     </button>
 
@@ -96,7 +96,7 @@ export default function Header({ toggleSidebar }) { // Accept toggleSidebar from
     {/* Logout Button */}
     <button
       onClick={handleLogout}
-      className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-medium transition-colors"
+      className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-medium transition-colors cursor-pointer"
       style={{
         backgroundColor: theme.colors.primary,
         color: theme.colors.buttonText
