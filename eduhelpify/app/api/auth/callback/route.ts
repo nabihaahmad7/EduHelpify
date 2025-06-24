@@ -43,8 +43,9 @@ export async function GET(request: Request) {
       }
     }
 
-    // Redirect to dashboard after successful authentication
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    // ✅ Use origin-based redirect
+  const origin = request.headers.get('origin') || 'https://eduhelpify.netlify.app';
+  return NextResponse.redirect(new URL('/dashboard', origin));
   }
 
   // If no code, redirect to login page
